@@ -57,6 +57,7 @@
             label1 = new Label();
             label2 = new Label();
             pictureBox1 = new PictureBox();
+            label3 = new Label();
             ((System.ComponentModel.ISupportInitialize)guna2PictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
@@ -256,6 +257,16 @@
             pictureBox1.TabIndex = 39;
             pictureBox1.TabStop = false;
             // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.BackColor = Color.Transparent;
+            label3.Location = new Point(1570, 872);
+            label3.Name = "label3";
+            label3.Size = new Size(80, 20);
+            label3.TabIndex = 40;
+            label3.Text = "Version 1.0";
+            // 
             // Login
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -263,6 +274,7 @@
             BackgroundImage = Properties.Resources._360_F_952928701_EL46BaYjyrxPasbZTx7Ux0Yr9q2GBuoU;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1662, 901);
+            Controls.Add(label3);
             Controls.Add(pictureBox1);
             Controls.Add(label2);
             Controls.Add(label1);
@@ -302,5 +314,6 @@
         private Label label1;
         private Label label2;
         private PictureBox pictureBox1;
+        private Label label3;
     }
 }

@@ -36,6 +36,16 @@
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle15 = new DataGridViewCellStyle();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
@@ -48,32 +58,10 @@
             DataGridViewCellStyle dataGridViewCellStyle12 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle13 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle14 = new DataGridViewCellStyle();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             guna2GradientButton5 = new Guna.UI2.WinForms.Guna2GradientButton();
             guna2GradientButton4 = new Guna.UI2.WinForms.Guna2GradientButton();
             panel1 = new Panel();
             guna2DataGridView1 = new Guna.UI2.WinForms.Guna2DataGridView();
-            NoDeProyecto = new DataGridViewTextBoxColumn();
-            NombreDelProyecto = new DataGridViewTextBoxColumn();
-            Lunes = new DataGridViewTextBoxColumn();
-            Martes = new DataGridViewTextBoxColumn();
-            Miercoles = new DataGridViewTextBoxColumn();
-            Jueves = new DataGridViewTextBoxColumn();
-            Viernes = new DataGridViewTextBoxColumn();
-            Sabado = new DataGridViewTextBoxColumn();
-            Domingo = new DataGridViewTextBoxColumn();
-            Total = new DataGridViewTextBoxColumn();
-            Comentarios = new DataGridViewTextBoxColumn();
-            SaveAsDraft = new DataGridViewTextBoxColumn();
             guna2TextBox3 = new Guna.UI2.WinForms.Guna2TextBox();
             guna2TextBox2 = new Guna.UI2.WinForms.Guna2TextBox();
             pictureBox3 = new PictureBox();
@@ -99,6 +87,18 @@
             textBox3 = new TextBox();
             textBox1 = new TextBox();
             textBox2 = new TextBox();
+            NoDeProyecto = new DataGridViewTextBoxColumn();
+            NombreDelProyecto = new DataGridViewTextBoxColumn();
+            Lunes = new DataGridViewTextBoxColumn();
+            Martes = new DataGridViewTextBoxColumn();
+            Miercoles = new DataGridViewTextBoxColumn();
+            Jueves = new DataGridViewTextBoxColumn();
+            Viernes = new DataGridViewTextBoxColumn();
+            Sabado = new DataGridViewTextBoxColumn();
+            Domingo = new DataGridViewTextBoxColumn();
+            Total = new DataGridViewTextBoxColumn();
+            Comentarios = new DataGridViewTextBoxColumn();
+            SaveAsDraft = new DataGridViewTextBoxColumn();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)guna2DataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
@@ -174,6 +174,7 @@
             // 
             // guna2DataGridView1
             // 
+            guna2DataGridView1.AllowUserToAddRows = false;
             dataGridViewCellStyle1.BackColor = Color.FromArgb(247, 248, 249);
             guna2DataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             guna2DataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Raised;
@@ -232,117 +233,6 @@
             guna2DataGridView1.CellValueChanged += guna2DataGridView1_CellValueChanged;
             guna2DataGridView1.CurrentCellDirtyStateChanged += guna2DataGridView1_CurrentCellDirtyStateChanged;
             guna2DataGridView1.EditingControlShowing += guna2DataGridView1_EditingControlShowing;
-            // 
-            // NoDeProyecto
-            // 
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            NoDeProyecto.DefaultCellStyle = dataGridViewCellStyle3;
-            NoDeProyecto.DividerWidth = 2;
-            NoDeProyecto.HeaderText = "No. De Proyecto";
-            NoDeProyecto.MinimumWidth = 6;
-            NoDeProyecto.Name = "NoDeProyecto";
-            // 
-            // NombreDelProyecto
-            // 
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            NombreDelProyecto.DefaultCellStyle = dataGridViewCellStyle4;
-            NombreDelProyecto.DividerWidth = 2;
-            NombreDelProyecto.HeaderText = "Nombre Del Proyecto";
-            NombreDelProyecto.MinimumWidth = 6;
-            NombreDelProyecto.Name = "NombreDelProyecto";
-            NombreDelProyecto.ReadOnly = true;
-            // 
-            // Lunes
-            // 
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            Lunes.DefaultCellStyle = dataGridViewCellStyle5;
-            Lunes.DividerWidth = 2;
-            Lunes.HeaderText = "Lunes";
-            Lunes.MinimumWidth = 6;
-            Lunes.Name = "Lunes";
-            // 
-            // Martes
-            // 
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            Martes.DefaultCellStyle = dataGridViewCellStyle6;
-            Martes.DividerWidth = 2;
-            Martes.HeaderText = "Martes";
-            Martes.MinimumWidth = 6;
-            Martes.Name = "Martes";
-            // 
-            // Miercoles
-            // 
-            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            Miercoles.DefaultCellStyle = dataGridViewCellStyle7;
-            Miercoles.DividerWidth = 2;
-            Miercoles.HeaderText = "Miercoles";
-            Miercoles.MinimumWidth = 6;
-            Miercoles.Name = "Miercoles";
-            // 
-            // Jueves
-            // 
-            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            Jueves.DefaultCellStyle = dataGridViewCellStyle8;
-            Jueves.DividerWidth = 2;
-            Jueves.HeaderText = "Jueves";
-            Jueves.MinimumWidth = 6;
-            Jueves.Name = "Jueves";
-            // 
-            // Viernes
-            // 
-            dataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            Viernes.DefaultCellStyle = dataGridViewCellStyle9;
-            Viernes.DividerWidth = 2;
-            Viernes.HeaderText = "Viernes";
-            Viernes.MinimumWidth = 6;
-            Viernes.Name = "Viernes";
-            // 
-            // Sabado
-            // 
-            dataGridViewCellStyle10.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            Sabado.DefaultCellStyle = dataGridViewCellStyle10;
-            Sabado.DividerWidth = 2;
-            Sabado.HeaderText = "Sabado";
-            Sabado.MinimumWidth = 6;
-            Sabado.Name = "Sabado";
-            // 
-            // Domingo
-            // 
-            dataGridViewCellStyle11.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            Domingo.DefaultCellStyle = dataGridViewCellStyle11;
-            Domingo.DividerWidth = 2;
-            Domingo.HeaderText = "Domingo";
-            Domingo.MinimumWidth = 6;
-            Domingo.Name = "Domingo";
-            // 
-            // Total
-            // 
-            dataGridViewCellStyle12.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            Total.DefaultCellStyle = dataGridViewCellStyle12;
-            Total.DividerWidth = 2;
-            Total.HeaderText = "Total";
-            Total.MinimumWidth = 6;
-            Total.Name = "Total";
-            // 
-            // Comentarios
-            // 
-            dataGridViewCellStyle13.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            Comentarios.DefaultCellStyle = dataGridViewCellStyle13;
-            Comentarios.DividerWidth = 2;
-            Comentarios.HeaderText = "Comentarios";
-            Comentarios.MinimumWidth = 6;
-            Comentarios.Name = "Comentarios";
-            // 
-            // SaveAsDraft
-            // 
-            dataGridViewCellStyle14.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            SaveAsDraft.DefaultCellStyle = dataGridViewCellStyle14;
-            SaveAsDraft.DividerWidth = 2;
-            SaveAsDraft.HeaderText = "SaveAsDraft";
-            SaveAsDraft.MinimumWidth = 6;
-            SaveAsDraft.Name = "SaveAsDraft";
-            SaveAsDraft.Resizable = DataGridViewTriState.True;
-            SaveAsDraft.Visible = false;
             // 
             // guna2TextBox3
             // 
@@ -689,6 +579,118 @@
             textBox2.TabIndex = 157;
             textBox2.TextChanged += textBox2_TextChanged;
             // 
+            // NoDeProyecto
+            // 
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            NoDeProyecto.DefaultCellStyle = dataGridViewCellStyle3;
+            NoDeProyecto.DividerWidth = 2;
+            NoDeProyecto.HeaderText = "No. De Proyecto";
+            NoDeProyecto.MinimumWidth = 6;
+            NoDeProyecto.Name = "NoDeProyecto";
+            // 
+            // NombreDelProyecto
+            // 
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            NombreDelProyecto.DefaultCellStyle = dataGridViewCellStyle4;
+            NombreDelProyecto.DividerWidth = 2;
+            NombreDelProyecto.HeaderText = "Nombre Del Proyecto";
+            NombreDelProyecto.MinimumWidth = 6;
+            NombreDelProyecto.Name = "NombreDelProyecto";
+            NombreDelProyecto.ReadOnly = true;
+            // 
+            // Lunes
+            // 
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            Lunes.DefaultCellStyle = dataGridViewCellStyle5;
+            Lunes.DividerWidth = 2;
+            Lunes.HeaderText = "Lunes";
+            Lunes.MinimumWidth = 6;
+            Lunes.Name = "Lunes";
+            // 
+            // Martes
+            // 
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            Martes.DefaultCellStyle = dataGridViewCellStyle6;
+            Martes.DividerWidth = 2;
+            Martes.HeaderText = "Martes";
+            Martes.MinimumWidth = 6;
+            Martes.Name = "Martes";
+            // 
+            // Miercoles
+            // 
+            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            Miercoles.DefaultCellStyle = dataGridViewCellStyle7;
+            Miercoles.DividerWidth = 2;
+            Miercoles.HeaderText = "Miercoles";
+            Miercoles.MinimumWidth = 6;
+            Miercoles.Name = "Miercoles";
+            // 
+            // Jueves
+            // 
+            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            Jueves.DefaultCellStyle = dataGridViewCellStyle8;
+            Jueves.DividerWidth = 2;
+            Jueves.HeaderText = "Jueves";
+            Jueves.MinimumWidth = 6;
+            Jueves.Name = "Jueves";
+            // 
+            // Viernes
+            // 
+            dataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            Viernes.DefaultCellStyle = dataGridViewCellStyle9;
+            Viernes.DividerWidth = 2;
+            Viernes.HeaderText = "Viernes";
+            Viernes.MinimumWidth = 6;
+            Viernes.Name = "Viernes";
+            // 
+            // Sabado
+            // 
+            dataGridViewCellStyle10.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            Sabado.DefaultCellStyle = dataGridViewCellStyle10;
+            Sabado.DividerWidth = 2;
+            Sabado.HeaderText = "Sabado";
+            Sabado.MinimumWidth = 6;
+            Sabado.Name = "Sabado";
+            // 
+            // Domingo
+            // 
+            dataGridViewCellStyle11.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            Domingo.DefaultCellStyle = dataGridViewCellStyle11;
+            Domingo.DividerWidth = 2;
+            Domingo.HeaderText = "Domingo";
+            Domingo.MinimumWidth = 6;
+            Domingo.Name = "Domingo";
+            // 
+            // Total
+            // 
+            dataGridViewCellStyle12.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            Total.DefaultCellStyle = dataGridViewCellStyle12;
+            Total.DividerWidth = 2;
+            Total.HeaderText = "Total";
+            Total.MinimumWidth = 6;
+            Total.Name = "Total";
+            Total.ReadOnly = true;
+            // 
+            // Comentarios
+            // 
+            dataGridViewCellStyle13.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            Comentarios.DefaultCellStyle = dataGridViewCellStyle13;
+            Comentarios.DividerWidth = 2;
+            Comentarios.HeaderText = "Comentarios";
+            Comentarios.MinimumWidth = 6;
+            Comentarios.Name = "Comentarios";
+            // 
+            // SaveAsDraft
+            // 
+            dataGridViewCellStyle14.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            SaveAsDraft.DefaultCellStyle = dataGridViewCellStyle14;
+            SaveAsDraft.DividerWidth = 2;
+            SaveAsDraft.HeaderText = "SaveAsDraft";
+            SaveAsDraft.MinimumWidth = 6;
+            SaveAsDraft.Name = "SaveAsDraft";
+            SaveAsDraft.Resizable = DataGridViewTriState.True;
+            SaveAsDraft.Visible = false;
+            // 
             // ViewEditRecords
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -725,18 +727,6 @@
         private PictureBox pictureBox2;
         private PictureBox pictureBox1;
         private Guna.UI2.WinForms.Guna2ComboBox guna2ComboBox1;
-        private DataGridViewTextBoxColumn NoDeProyecto;
-        private DataGridViewTextBoxColumn NombreDelProyecto;
-        private DataGridViewTextBoxColumn Lunes;
-        private DataGridViewTextBoxColumn Martes;
-        private DataGridViewTextBoxColumn Miercoles;
-        private DataGridViewTextBoxColumn Jueves;
-        private DataGridViewTextBoxColumn Viernes;
-        private DataGridViewTextBoxColumn Sabado;
-        private DataGridViewTextBoxColumn Domingo;
-        private DataGridViewTextBoxColumn Total;
-        private DataGridViewTextBoxColumn Comentarios;
-        private DataGridViewTextBoxColumn SaveAsDraft;
         private Guna.UI2.WinForms.Guna2CustomGradientPanel guna2CustomGradientPanel1;
         private Guna.UI2.WinForms.Guna2CustomGradientPanel guna2CustomGradientPanel2;
         private PictureBox pictureBox4;
@@ -756,5 +746,17 @@
         private TextBox textBox3;
         private TextBox textBox1;
         private TextBox textBox2;
+        private DataGridViewTextBoxColumn NoDeProyecto;
+        private DataGridViewTextBoxColumn NombreDelProyecto;
+        private DataGridViewTextBoxColumn Lunes;
+        private DataGridViewTextBoxColumn Martes;
+        private DataGridViewTextBoxColumn Miercoles;
+        private DataGridViewTextBoxColumn Jueves;
+        private DataGridViewTextBoxColumn Viernes;
+        private DataGridViewTextBoxColumn Sabado;
+        private DataGridViewTextBoxColumn Domingo;
+        private DataGridViewTextBoxColumn Total;
+        private DataGridViewTextBoxColumn Comentarios;
+        private DataGridViewTextBoxColumn SaveAsDraft;
     }
 }

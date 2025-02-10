@@ -564,6 +564,14 @@ namespace Engitask.User_Controls
 
                 MessageBox.Show("Datos actualizados con éxito.");
                 guna2DataGridView1.Rows.Clear();
+                textBox1.Clear();
+                textBox2.Clear();
+                textBox3.Clear();
+                textBox4.Clear();
+                textBox7.Clear();
+                textBox8.Clear();
+                textBox5.Clear();
+                textBox6.Clear();
             }
             catch (Exception ex)
             {
