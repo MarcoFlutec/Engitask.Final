@@ -137,13 +137,13 @@ namespace Engitask.User_Controls
                             guna2DataGridView1.Rows.Add(
                                 reader["No#Proyecto"].ToString(),
                                 reader["Nombre del Proyecto"].ToString(),
-                                reader["Lunes"].ToString(),
-                                reader["Martes"].ToString(),
-                                reader["Miercoles"].ToString(),
                                 reader["Jueves"].ToString(),
                                 reader["Viernes"].ToString(),
                                 reader["Sabado"].ToString(),
                                 reader["Domingo"].ToString(),
+                                reader["Lunes"].ToString(),
+                                reader["Martes"].ToString(),
+                                reader["Miercoles"].ToString(),
                                 reader["Total de Horas"].ToString(),
                                 reader["Comentarios"].ToString()
                             );
@@ -330,13 +330,13 @@ namespace Engitask.User_Controls
                                 cmdActualizar.Parameters.AddWithValue("@Semana", semanaSeleccionada);
                                 cmdActualizar.Parameters.AddWithValue("@NombreProyecto", row.Cells[1].Value?.ToString() ?? (object)DBNull.Value);
                                 cmdActualizar.Parameters.AddWithValue("@Puesto", guna2TextBox3.Text);
-                                cmdActualizar.Parameters.AddWithValue("@Lunes", row.Cells[2].Value?.ToString() ?? (object)DBNull.Value);
-                                cmdActualizar.Parameters.AddWithValue("@Martes", row.Cells[3].Value?.ToString() ?? (object)DBNull.Value);
-                                cmdActualizar.Parameters.AddWithValue("@Miercoles", row.Cells[4].Value?.ToString() ?? (object)DBNull.Value);
-                                cmdActualizar.Parameters.AddWithValue("@Jueves", row.Cells[5].Value?.ToString() ?? (object)DBNull.Value);
-                                cmdActualizar.Parameters.AddWithValue("@Viernes", row.Cells[6].Value?.ToString() ?? (object)DBNull.Value);
-                                cmdActualizar.Parameters.AddWithValue("@Sabado", row.Cells[7].Value?.ToString() ?? (object)DBNull.Value);
-                                cmdActualizar.Parameters.AddWithValue("@Domingo", row.Cells[8].Value?.ToString() ?? (object)DBNull.Value);
+                                cmdActualizar.Parameters.AddWithValue("@Lunes", row.Cells[6].Value?.ToString() ?? (object)DBNull.Value);
+                                cmdActualizar.Parameters.AddWithValue("@Martes", row.Cells[7].Value?.ToString() ?? (object)DBNull.Value);
+                                cmdActualizar.Parameters.AddWithValue("@Miercoles", row.Cells[8].Value?.ToString() ?? (object)DBNull.Value);
+                                cmdActualizar.Parameters.AddWithValue("@Jueves", row.Cells[2].Value?.ToString() ?? (object)DBNull.Value);
+                                cmdActualizar.Parameters.AddWithValue("@Viernes", row.Cells[3].Value?.ToString() ?? (object)DBNull.Value);
+                                cmdActualizar.Parameters.AddWithValue("@Sabado", row.Cells[4].Value?.ToString() ?? (object)DBNull.Value);
+                                cmdActualizar.Parameters.AddWithValue("@Domingo", row.Cells[5].Value?.ToString() ?? (object)DBNull.Value);
                                 cmdActualizar.Parameters.AddWithValue("@TotalHoras", row.Cells[9].Value?.ToString() ?? (object)DBNull.Value);
                                 cmdActualizar.Parameters.AddWithValue("@Comentarios", row.Cells[10].Value?.ToString() ?? (object)DBNull.Value);
 
@@ -468,25 +468,25 @@ namespace Engitask.User_Controls
                                         cmdUpdate.Parameters.AddWithValue("@Semana", semana);
 
                                         cmdUpdate.Parameters.AddWithValue("@Lunes",
-                                            row.Cells[2].Value == null || string.IsNullOrWhiteSpace(row.Cells[2].Value.ToString()) ? (object)DBNull.Value : row.Cells[2].Value.ToString());
-
-                                        cmdUpdate.Parameters.AddWithValue("@Martes",
-                                            row.Cells[3].Value == null || string.IsNullOrWhiteSpace(row.Cells[3].Value.ToString()) ? (object)DBNull.Value : row.Cells[3].Value.ToString());
-
-                                        cmdUpdate.Parameters.AddWithValue("@Miercoles",
-                                            row.Cells[4].Value == null || string.IsNullOrWhiteSpace(row.Cells[4].Value.ToString()) ? (object)DBNull.Value : row.Cells[4].Value.ToString());
-
-                                        cmdUpdate.Parameters.AddWithValue("@Jueves",
-                                            row.Cells[5].Value == null || string.IsNullOrWhiteSpace(row.Cells[5].Value.ToString()) ? (object)DBNull.Value : row.Cells[5].Value.ToString());
-
-                                        cmdUpdate.Parameters.AddWithValue("@Viernes",
                                             row.Cells[6].Value == null || string.IsNullOrWhiteSpace(row.Cells[6].Value.ToString()) ? (object)DBNull.Value : row.Cells[6].Value.ToString());
 
-                                        cmdUpdate.Parameters.AddWithValue("@Sabado",
+                                        cmdUpdate.Parameters.AddWithValue("@Martes",
                                             row.Cells[7].Value == null || string.IsNullOrWhiteSpace(row.Cells[7].Value.ToString()) ? (object)DBNull.Value : row.Cells[7].Value.ToString());
 
-                                        cmdUpdate.Parameters.AddWithValue("@Domingo",
+                                        cmdUpdate.Parameters.AddWithValue("@Miercoles",
                                             row.Cells[8].Value == null || string.IsNullOrWhiteSpace(row.Cells[8].Value.ToString()) ? (object)DBNull.Value : row.Cells[8].Value.ToString());
+
+                                        cmdUpdate.Parameters.AddWithValue("@Jueves",
+                                            row.Cells[2].Value == null || string.IsNullOrWhiteSpace(row.Cells[2].Value.ToString()) ? (object)DBNull.Value : row.Cells[2].Value.ToString());
+
+                                        cmdUpdate.Parameters.AddWithValue("@Viernes",
+                                            row.Cells[3].Value == null || string.IsNullOrWhiteSpace(row.Cells[3].Value.ToString()) ? (object)DBNull.Value : row.Cells[3].Value.ToString());
+
+                                        cmdUpdate.Parameters.AddWithValue("@Sabado",
+                                            row.Cells[4].Value == null || string.IsNullOrWhiteSpace(row.Cells[4].Value.ToString()) ? (object)DBNull.Value : row.Cells[4].Value.ToString());
+
+                                        cmdUpdate.Parameters.AddWithValue("@Domingo",
+                                            row.Cells[5].Value == null || string.IsNullOrWhiteSpace(row.Cells[5].Value.ToString()) ? (object)DBNull.Value : row.Cells[5].Value.ToString());
 
                                         cmdUpdate.Parameters.AddWithValue("@TotalHoras",
                                             row.Cells[9].Value == null || string.IsNullOrWhiteSpace(row.Cells[9].Value.ToString()) ? (object)DBNull.Value : row.Cells[9].Value.ToString());
@@ -527,25 +527,25 @@ namespace Engitask.User_Controls
                                         cmdInsertar.Parameters.AddWithValue("@Semana", semana);
 
                                         cmdInsertar.Parameters.AddWithValue("@Lunes",
-                                            row.Cells[2].Value == null || string.IsNullOrWhiteSpace(row.Cells[2].Value.ToString()) ? (object)DBNull.Value : row.Cells[2].Value.ToString());
-
-                                        cmdInsertar.Parameters.AddWithValue("@Martes",
-                                            row.Cells[3].Value == null || string.IsNullOrWhiteSpace(row.Cells[3].Value.ToString()) ? (object)DBNull.Value : row.Cells[3].Value.ToString());
-
-                                        cmdInsertar.Parameters.AddWithValue("@Miercoles",
-                                            row.Cells[4].Value == null || string.IsNullOrWhiteSpace(row.Cells[4].Value.ToString()) ? (object)DBNull.Value : row.Cells[4].Value.ToString());
-
-                                        cmdInsertar.Parameters.AddWithValue("@Jueves",
-                                            row.Cells[5].Value == null || string.IsNullOrWhiteSpace(row.Cells[5].Value.ToString()) ? (object)DBNull.Value : row.Cells[5].Value.ToString());
-
-                                        cmdInsertar.Parameters.AddWithValue("@Viernes",
                                             row.Cells[6].Value == null || string.IsNullOrWhiteSpace(row.Cells[6].Value.ToString()) ? (object)DBNull.Value : row.Cells[6].Value.ToString());
 
-                                        cmdInsertar.Parameters.AddWithValue("@Sabado",
+                                        cmdInsertar.Parameters.AddWithValue("@Martes",
                                             row.Cells[7].Value == null || string.IsNullOrWhiteSpace(row.Cells[7].Value.ToString()) ? (object)DBNull.Value : row.Cells[7].Value.ToString());
 
-                                        cmdInsertar.Parameters.AddWithValue("@Domingo",
+                                        cmdInsertar.Parameters.AddWithValue("@Miercoles",
                                             row.Cells[8].Value == null || string.IsNullOrWhiteSpace(row.Cells[8].Value.ToString()) ? (object)DBNull.Value : row.Cells[8].Value.ToString());
+
+                                        cmdInsertar.Parameters.AddWithValue("@Jueves",
+                                            row.Cells[2].Value == null || string.IsNullOrWhiteSpace(row.Cells[2].Value.ToString()) ? (object)DBNull.Value : row.Cells[2].Value.ToString());
+
+                                        cmdInsertar.Parameters.AddWithValue("@Viernes",
+                                            row.Cells[3].Value == null || string.IsNullOrWhiteSpace(row.Cells[3].Value.ToString()) ? (object)DBNull.Value : row.Cells[3].Value.ToString());
+
+                                        cmdInsertar.Parameters.AddWithValue("@Sabado",
+                                            row.Cells[4].Value == null || string.IsNullOrWhiteSpace(row.Cells[4].Value.ToString()) ? (object)DBNull.Value : row.Cells[4].Value.ToString());
+
+                                        cmdInsertar.Parameters.AddWithValue("@Domingo",
+                                            row.Cells[5].Value == null || string.IsNullOrWhiteSpace(row.Cells[5].Value.ToString()) ? (object)DBNull.Value : row.Cells[5].Value.ToString());
 
                                         cmdInsertar.Parameters.AddWithValue("@TotalHoras",
                                             row.Cells[9].Value == null || string.IsNullOrWhiteSpace(row.Cells[9].Value.ToString()) ? (object)DBNull.Value : row.Cells[9].Value.ToString());
