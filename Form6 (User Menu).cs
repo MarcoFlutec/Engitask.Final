@@ -32,6 +32,7 @@ namespace Engitask
             ShowUserControl(Bienvenidx);
         }
 
+
         private void ShowUserControl(UserControl control)
         {
             // Limpiar el panel antes de mostrar el nuevo UserControl
@@ -137,6 +138,11 @@ namespace Engitask
             {
                 MessageBox.Show($"Error al abrir el enlace: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void Form6__User_Menu__FormClosing(object sender, FormClosingEventArgs e)
+        {
+            System.Diagnostics.Process.GetCurrentProcess().Kill();  // Termina el proceso abruptamente
         }
     }
 }

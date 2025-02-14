@@ -63,6 +63,8 @@
             textBox2 = new TextBox();
             guna2GradientButton4 = new Guna.UI2.WinForms.Guna2GradientButton();
             guna2CustomGradientPanel1 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
+            textBox9 = new TextBox();
+            label9 = new Label();
             guna2TextBox3 = new Guna.UI2.WinForms.Guna2TextBox();
             guna2TextBox2 = new Guna.UI2.WinForms.Guna2TextBox();
             guna2TextBox1 = new Guna.UI2.WinForms.Guna2TextBox();
@@ -71,13 +73,13 @@
             pictureBox1 = new PictureBox();
             NoDeProyecto = new DataGridViewComboBoxColumn();
             NombreDelProyecto = new DataGridViewTextBoxColumn();
-            Lunes = new DataGridViewTextBoxColumn();
-            Martes = new DataGridViewTextBoxColumn();
-            Miercoles = new DataGridViewTextBoxColumn();
             Jueves = new DataGridViewTextBoxColumn();
             Viernes = new DataGridViewTextBoxColumn();
             Sabado = new DataGridViewTextBoxColumn();
             Domingo = new DataGridViewTextBoxColumn();
+            Lunes = new DataGridViewTextBoxColumn();
+            Martes = new DataGridViewTextBoxColumn();
+            Miercoles = new DataGridViewTextBoxColumn();
             Total = new DataGridViewTextBoxColumn();
             Comentarios = new DataGridViewTextBoxColumn();
             SaveAsDraft = new DataGridViewTextBoxColumn();
@@ -103,7 +105,7 @@
             // guna2DataGridView2
             // 
             guna2DataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            guna2DataGridView2.Columns.AddRange(new DataGridViewColumn[] { NoDeProyecto, NombreDelProyecto, Lunes, Martes, Miercoles, Jueves, Viernes, Sabado, Domingo, Total, Comentarios, SaveAsDraft });
+            guna2DataGridView2.Columns.AddRange(new DataGridViewColumn[] { NoDeProyecto, NombreDelProyecto, Jueves, Viernes, Sabado, Domingo, Lunes, Martes, Miercoles, Total, Comentarios, SaveAsDraft });
             guna2DataGridView2.Dock = DockStyle.Fill;
             guna2DataGridView2.Location = new Point(0, 0);
             guna2DataGridView2.Name = "guna2DataGridView2";
@@ -357,6 +359,8 @@
             // 
             // guna2CustomGradientPanel1
             // 
+            guna2CustomGradientPanel1.Controls.Add(textBox9);
+            guna2CustomGradientPanel1.Controls.Add(label9);
             guna2CustomGradientPanel1.Controls.Add(guna2TextBox3);
             guna2CustomGradientPanel1.Controls.Add(guna2TextBox2);
             guna2CustomGradientPanel1.Controls.Add(guna2TextBox1);
@@ -374,6 +378,25 @@
             guna2CustomGradientPanel1.ShadowDecoration.CustomizableEdges = customizableEdges12;
             guna2CustomGradientPanel1.Size = new Size(1353, 92);
             guna2CustomGradientPanel1.TabIndex = 155;
+            // 
+            // textBox9
+            // 
+            textBox9.Location = new Point(976, 42);
+            textBox9.Name = "textBox9";
+            textBox9.Size = new Size(293, 27);
+            textBox9.TabIndex = 22;
+            textBox9.TextAlign = HorizontalAlignment.Center;
+            textBox9.TextChanged += textBox9_TextChanged;
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.ForeColor = Color.White;
+            label9.Location = new Point(1014, 12);
+            label9.Name = "label9";
+            label9.Size = new Size(211, 20);
+            label9.TabIndex = 21;
+            label9.Text = "Periodo que abarca la Semana";
             // 
             // guna2TextBox3
             // 
@@ -514,27 +537,6 @@
             NombreDelProyecto.SortMode = DataGridViewColumnSortMode.NotSortable;
             NombreDelProyecto.Width = 125;
             // 
-            // Lunes
-            // 
-            Lunes.HeaderText = "Lunes";
-            Lunes.MinimumWidth = 6;
-            Lunes.Name = "Lunes";
-            Lunes.Width = 125;
-            // 
-            // Martes
-            // 
-            Martes.HeaderText = "Martes";
-            Martes.MinimumWidth = 6;
-            Martes.Name = "Martes";
-            Martes.Width = 125;
-            // 
-            // Miercoles
-            // 
-            Miercoles.HeaderText = "Miercoles";
-            Miercoles.MinimumWidth = 6;
-            Miercoles.Name = "Miercoles";
-            Miercoles.Width = 125;
-            // 
             // Jueves
             // 
             Jueves.HeaderText = "Jueves";
@@ -562,6 +564,27 @@
             Domingo.MinimumWidth = 6;
             Domingo.Name = "Domingo";
             Domingo.Width = 125;
+            // 
+            // Lunes
+            // 
+            Lunes.HeaderText = "Lunes";
+            Lunes.MinimumWidth = 6;
+            Lunes.Name = "Lunes";
+            Lunes.Width = 125;
+            // 
+            // Martes
+            // 
+            Martes.HeaderText = "Martes";
+            Martes.MinimumWidth = 6;
+            Martes.Name = "Martes";
+            Martes.Width = 125;
+            // 
+            // Miercoles
+            // 
+            Miercoles.HeaderText = "Miercoles";
+            Miercoles.MinimumWidth = 6;
+            Miercoles.Name = "Miercoles";
+            Miercoles.Width = 125;
             // 
             // Total
             // 
@@ -607,6 +630,7 @@
             guna2CustomGradientPanel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
             guna2CustomGradientPanel1.ResumeLayout(false);
+            guna2CustomGradientPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
@@ -642,15 +666,17 @@
         private PictureBox pictureBox2;
         private PictureBox pictureBox1;
         private DataGridView guna2DataGridView2;
+        private TextBox textBox9;
+        private Label label9;
         private DataGridViewComboBoxColumn NoDeProyecto;
         private DataGridViewTextBoxColumn NombreDelProyecto;
-        private DataGridViewTextBoxColumn Lunes;
-        private DataGridViewTextBoxColumn Martes;
-        private DataGridViewTextBoxColumn Miercoles;
         private DataGridViewTextBoxColumn Jueves;
         private DataGridViewTextBoxColumn Viernes;
         private DataGridViewTextBoxColumn Sabado;
         private DataGridViewTextBoxColumn Domingo;
+        private DataGridViewTextBoxColumn Lunes;
+        private DataGridViewTextBoxColumn Martes;
+        private DataGridViewTextBoxColumn Miercoles;
         private DataGridViewTextBoxColumn Total;
         private DataGridViewTextBoxColumn Comentarios;
         private DataGridViewTextBoxColumn SaveAsDraft;

@@ -56,6 +56,58 @@ namespace Engitask.User_Controls
                         guna2TextBox1.Text = "Fecha no encontrada";
                     }
                 }
+
+                // Obtener el periodo de la semana (fecha de inicio y fin) con el número de semana
+                string queryPeriodoSemana = "SELECT MIN(FechaNumerica) AS FechaInicio, MAX(FechaNumerica) AS FechaFin " +
+                                             "FROM Calendar WHERE NumeroSemana = @NumeroSemana AND YEAR(FechaNumerica) = @Anio";
+
+                using (SqlCommand cmdPeriodoSemana = new SqlCommand(queryPeriodoSemana, con))
+                {
+                    // Agregar los parámetros para evitar SQL Injection
+                    cmdPeriodoSemana.Parameters.AddWithValue("@NumeroSemana", guna2TextBox1.Text);
+                    cmdPeriodoSemana.Parameters.AddWithValue("@Anio", DateTime.Now.Year); // Año actual para filtrar el periodo de este año
+
+                    // Ejecutar la consulta y obtener las fechas de inicio y fin de la semana
+                    using (SqlDataReader reader = cmdPeriodoSemana.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            // Verificar si las fechas no son nulas
+                            if (!reader.IsDBNull(0) && !reader.IsDBNull(1))
+                            {
+                                // Obtener las fechas como string
+                                string fechaInicioString = reader.GetString(0);
+                                string fechaFinString = reader.GetString(1);
+
+                                DateTime fechaInicio;
+                                DateTime fechaFin;
+
+                                // Intentamos convertir las cadenas a DateTime
+                                if (DateTime.TryParse(fechaInicioString, out fechaInicio) && DateTime.TryParse(fechaFinString, out fechaFin))
+                                {
+                                    // Mostrar el rango de fechas en el TextBox3
+                                    textBox9.Text = $"{fechaInicio.ToString("dd/MM/yyyy")} - {fechaFin.ToString("dd/MM/yyyy")}";
+                                }
+                                else
+                                {
+                                    // Si la conversión falla, mostrar un mensaje
+                                    textBox9.Text = $"Error de conversión de fecha. Inicio: {fechaInicioString}, Fin: {fechaFinString}";
+                                }
+                            }
+                            else
+                            {
+                                // Si alguna de las fechas es nula, mostrar un mensaje
+                                textBox9.Text = "Periodo no encontrado (fechas nulas)";
+                            }
+                        }
+                        else
+                        {
+                            // Si no se encuentra el periodo de la semana, mostrar un mensaje
+                            textBox9.Text = "Periodo no encontrado (sin datos)";
+                        }
+                    }
+                }
+
                 // Usar el correo del usuario almacenado en la clase Session
                 string correoUsuario = Session.CorreoUsuario;
 
@@ -456,63 +508,63 @@ namespace Engitask.User_Controls
 
             // Crear la conexión a la base de datos
             conexion cnn = new conexion();
-                    SqlConnection con = cnn.GetConnection();
+            SqlConnection con = cnn.GetConnection();
 
-                    bool seMostroMensajeDuplicado = false; // Variable para rastrear si se detectó un duplicado
+            bool seMostroMensajeDuplicado = false; // Variable para rastrear si se detectó un duplicado
 
-                    try
+            try
+            {
+                // Obtener valores de Ingeniero y Semana
+                string ingeniero = guna2TextBox2.Text;
+                string semana = guna2TextBox1.Text;
+
+                foreach (DataGridViewRow row in guna2DataGridView2.Rows)
+                {
+                    if (!row.IsNewRow) // Verificar que no sea una fila vacía
                     {
-                        // Obtener valores de Ingeniero y Semana
-                        string ingeniero = guna2TextBox2.Text;
-                        string semana = guna2TextBox1.Text;
+                        string numeroProyecto = row.Cells[0].Value == null ? string.Empty : row.Cells[0].Value.ToString();
+                        DateTime fecha = DateTime.Now; // O toma la fecha correspondiente si está en otra columna
 
-                        foreach (DataGridViewRow row in guna2DataGridView2.Rows)
+                        if (!string.IsNullOrEmpty(numeroProyecto))
                         {
-                            if (!row.IsNewRow) // Verificar que no sea una fila vacía
-                            {
-                                string numeroProyecto = row.Cells[0].Value == null ? string.Empty : row.Cells[0].Value.ToString();
-                                DateTime fecha = DateTime.Now; // O toma la fecha correspondiente si está en otra columna
-
-                                if (!string.IsNullOrEmpty(numeroProyecto))
-                                {
-                                    // Verificar si ya existe un registro con el mismo Ingeniero, Semana, No#Proyecto y Fecha
-                                    string queryVerificarExistente = @"SELECT COUNT(*) FROM [ENGITASK].[dbo].[Planeador] 
+                            // Verificar si ya existe un registro con el mismo Ingeniero, Semana, No#Proyecto y Fecha
+                            string queryVerificarExistente = @"SELECT COUNT(*) FROM [ENGITASK].[dbo].[Planeador] 
                                             WHERE [No#Proyecto] = @NoProyecto 
                                             AND [Ingeniero] = @Ingeniero 
                                             AND [Semana] = @Semana
                                             AND CONVERT(DATE, [Fecha]) = @Fecha";
 
-                                    using (SqlCommand cmdVerificarExistente = new SqlCommand(queryVerificarExistente, con))
+                            using (SqlCommand cmdVerificarExistente = new SqlCommand(queryVerificarExistente, con))
+                            {
+                                cmdVerificarExistente.Parameters.AddWithValue("@NoProyecto", numeroProyecto);
+                                cmdVerificarExistente.Parameters.AddWithValue("@Ingeniero", ingeniero);
+                                cmdVerificarExistente.Parameters.AddWithValue("@Semana", semana);
+                                cmdVerificarExistente.Parameters.AddWithValue("@Fecha", fecha.Date);
+
+                                int count = (int)cmdVerificarExistente.ExecuteScalar();
+
+                                if (count > 0)
+                                {
+                                    // Si ya existe un registro, mostrar mensaje y saltar a la siguiente fila
+                                    MessageBox.Show($"Ya existe un registro para el proyecto {numeroProyecto}, Ingeniero {ingeniero}, Semana {semana} y Fecha {fecha.ToShortDateString()}. No se puede duplicar.");
+                                    MessageBox.Show("Por favor cambia el numero de proyecto o borralo para poder continuar.");
+                                    seMostroMensajeDuplicado = true; // Se detectó un duplicado
+                                    break;
+                                }
+                                else
+                                {
+                                    // Verificar si el proyecto existe en la tabla Proyectos
+                                    string queryVerificarProyecto = "SELECT COUNT(*) FROM [ENGITASK].[dbo].[Proyectos] WHERE [Numero de Proyecto] = @NumeroProyecto";
+
+                                    using (SqlCommand cmdVerificarProyecto = new SqlCommand(queryVerificarProyecto, con))
                                     {
-                                        cmdVerificarExistente.Parameters.AddWithValue("@NoProyecto", numeroProyecto);
-                                        cmdVerificarExistente.Parameters.AddWithValue("@Ingeniero", ingeniero);
-                                        cmdVerificarExistente.Parameters.AddWithValue("@Semana", semana);
-                                        cmdVerificarExistente.Parameters.AddWithValue("@Fecha", fecha.Date);
+                                        cmdVerificarProyecto.Parameters.AddWithValue("@NumeroProyecto", numeroProyecto);
+                                        int proyectoExiste = (int)cmdVerificarProyecto.ExecuteScalar();
 
-                                        int count = (int)cmdVerificarExistente.ExecuteScalar();
-
-                                        if (count > 0)
+                                        if (proyectoExiste > 0)
                                         {
-                                            // Si ya existe un registro, mostrar mensaje y saltar a la siguiente fila
-                                            MessageBox.Show($"Ya existe un registro para el proyecto {numeroProyecto}, Ingeniero {ingeniero}, Semana {semana} y Fecha {fecha.ToShortDateString()}. No se puede duplicar.");
-                                            MessageBox.Show("Por favor cambia el numero de proyecto o borralo para poder continuar.");
-                                            seMostroMensajeDuplicado = true; // Se detectó un duplicado
-                                            break;
-                                        }
-                                        else
-                                        {
-                                            // Verificar si el proyecto existe en la tabla Proyectos
-                                            string queryVerificarProyecto = "SELECT COUNT(*) FROM [ENGITASK].[dbo].[Proyectos] WHERE [Numero de Proyecto] = @NumeroProyecto";
-
-                                            using (SqlCommand cmdVerificarProyecto = new SqlCommand(queryVerificarProyecto, con))
-                                            {
-                                                cmdVerificarProyecto.Parameters.AddWithValue("@NumeroProyecto", numeroProyecto);
-                                                int proyectoExiste = (int)cmdVerificarProyecto.ExecuteScalar();
-
-                                                if (proyectoExiste > 0)
-                                                {
-                                                    // Realizar el insert en la tabla Planeador
-                                                    string queryInsertar = @"INSERT INTO [ENGITASK].[dbo].[Planeador]
+                                            // Realizar el insert en la tabla Planeador
+                                            string queryInsertar = @"INSERT INTO [ENGITASK].[dbo].[Planeador]
                          ([Ingeniero], [No#Proyecto], [Nombre del Proyecto], [Puesto], [Semana], [Lunes], 
                          [Martes], [Miercoles], [Jueves], [Viernes], [Sabado], [Domingo], [Total de Horas], 
                          [Comentarios], [Saved as], [Fecha])
@@ -520,137 +572,137 @@ namespace Engitask.User_Controls
                          (@Ingeniero, @NoProyecto, @NombreProyecto, @Puesto, @Semana, @Lunes, @Martes, @Miercoles,
                          @Jueves, @Viernes, @Sabado, @Domingo, @TotalHoras, @Comentarios, @SavedAs, @Fecha)";
 
-                                                    using (SqlCommand cmdInsertar = new SqlCommand(queryInsertar, con))
-                                                    {
-                                                        // Agregar los parámetros con valores de las celdas o TextBox
-                                                        cmdInsertar.Parameters.AddWithValue("@Ingeniero", ingeniero);
-                                                        cmdInsertar.Parameters.AddWithValue("@NoProyecto", numeroProyecto);
-                                                        cmdInsertar.Parameters.AddWithValue("@NombreProyecto",
-                                                            row.Cells[1].Value == null || string.IsNullOrWhiteSpace(row.Cells[1].Value.ToString()) ? (object)DBNull.Value : row.Cells[1].Value.ToString());
-                                                        cmdInsertar.Parameters.AddWithValue("@Puesto",
-                                                            string.IsNullOrWhiteSpace(guna2TextBox3.Text) ? (object)DBNull.Value : guna2TextBox3.Text);
-                                                        cmdInsertar.Parameters.AddWithValue("@Semana", semana);
-                                                        cmdInsertar.Parameters.AddWithValue("@Lunes",
-                                                            row.Cells[2].Value == null || string.IsNullOrWhiteSpace(row.Cells[2].Value.ToString()) ? (object)DBNull.Value : row.Cells[2].Value.ToString());
-                                                        cmdInsertar.Parameters.AddWithValue("@Martes",
-                                                            row.Cells[3].Value == null || string.IsNullOrWhiteSpace(row.Cells[3].Value.ToString()) ? (object)DBNull.Value : row.Cells[3].Value.ToString());
-                                                        cmdInsertar.Parameters.AddWithValue("@Miercoles",
-                                                            row.Cells[4].Value == null || string.IsNullOrWhiteSpace(row.Cells[4].Value.ToString()) ? (object)DBNull.Value : row.Cells[4].Value.ToString());
-                                                        cmdInsertar.Parameters.AddWithValue("@Jueves",
-                                                            row.Cells[5].Value == null || string.IsNullOrWhiteSpace(row.Cells[5].Value.ToString()) ? (object)DBNull.Value : row.Cells[5].Value.ToString());
-                                                        cmdInsertar.Parameters.AddWithValue("@Viernes",
-                                                            row.Cells[6].Value == null || string.IsNullOrWhiteSpace(row.Cells[6].Value.ToString()) ? (object)DBNull.Value : row.Cells[6].Value.ToString());
-                                                        cmdInsertar.Parameters.AddWithValue("@Sabado",
-                                                            row.Cells[7].Value == null || string.IsNullOrWhiteSpace(row.Cells[7].Value.ToString()) ? (object)DBNull.Value : row.Cells[7].Value.ToString());
-                                                        cmdInsertar.Parameters.AddWithValue("@Domingo",
-                                                            row.Cells[8].Value == null || string.IsNullOrWhiteSpace(row.Cells[8].Value.ToString()) ? (object)DBNull.Value : row.Cells[8].Value.ToString());
-                                                        cmdInsertar.Parameters.AddWithValue("@TotalHoras",
-                                                            row.Cells[9].Value == null || string.IsNullOrWhiteSpace(row.Cells[9].Value.ToString()) ? (object)DBNull.Value : row.Cells[9].Value.ToString());
-                                                        cmdInsertar.Parameters.AddWithValue("@Comentarios",
-                                                            row.Cells[10].Value == null || string.IsNullOrWhiteSpace(row.Cells[10].Value.ToString()) ? (object)DBNull.Value : row.Cells[10].Value.ToString());
-                                                        cmdInsertar.Parameters.AddWithValue("@SavedAs", "Draft");
-                                                        cmdInsertar.Parameters.AddWithValue("@Fecha", fecha);
+                                            using (SqlCommand cmdInsertar = new SqlCommand(queryInsertar, con))
+                                            {
+                                                // Agregar los parámetros con valores de las celdas o TextBox
+                                                cmdInsertar.Parameters.AddWithValue("@Ingeniero", ingeniero);
+                                                cmdInsertar.Parameters.AddWithValue("@NoProyecto", numeroProyecto);
+                                                cmdInsertar.Parameters.AddWithValue("@NombreProyecto",
+                                                    row.Cells[1].Value == null || string.IsNullOrWhiteSpace(row.Cells[1].Value.ToString()) ? (object)DBNull.Value : row.Cells[1].Value.ToString());
+                                                cmdInsertar.Parameters.AddWithValue("@Puesto",
+                                                    string.IsNullOrWhiteSpace(guna2TextBox3.Text) ? (object)DBNull.Value : guna2TextBox3.Text);
+                                                cmdInsertar.Parameters.AddWithValue("@Semana", semana);
+                                                cmdInsertar.Parameters.AddWithValue("@Lunes",
+                                                    row.Cells[6].Value == null || string.IsNullOrWhiteSpace(row.Cells[6].Value.ToString()) ? (object)DBNull.Value : row.Cells[6].Value.ToString());
+                                                cmdInsertar.Parameters.AddWithValue("@Martes",
+                                                    row.Cells[7].Value == null || string.IsNullOrWhiteSpace(row.Cells[7].Value.ToString()) ? (object)DBNull.Value : row.Cells[7].Value.ToString());
+                                                cmdInsertar.Parameters.AddWithValue("@Miercoles",
+                                                    row.Cells[8].Value == null || string.IsNullOrWhiteSpace(row.Cells[8].Value.ToString()) ? (object)DBNull.Value : row.Cells[8].Value.ToString());
+                                                cmdInsertar.Parameters.AddWithValue("@Jueves",
+                                                    row.Cells[2].Value == null || string.IsNullOrWhiteSpace(row.Cells[2].Value.ToString()) ? (object)DBNull.Value : row.Cells[2].Value.ToString());
+                                                cmdInsertar.Parameters.AddWithValue("@Viernes",
+                                                    row.Cells[3].Value == null || string.IsNullOrWhiteSpace(row.Cells[3].Value.ToString()) ? (object)DBNull.Value : row.Cells[3].Value.ToString());
+                                                cmdInsertar.Parameters.AddWithValue("@Sabado",
+                                                    row.Cells[4].Value == null || string.IsNullOrWhiteSpace(row.Cells[4].Value.ToString()) ? (object)DBNull.Value : row.Cells[4].Value.ToString());
+                                                cmdInsertar.Parameters.AddWithValue("@Domingo",
+                                                    row.Cells[5].Value == null || string.IsNullOrWhiteSpace(row.Cells[5].Value.ToString()) ? (object)DBNull.Value : row.Cells[5].Value.ToString());
+                                                cmdInsertar.Parameters.AddWithValue("@TotalHoras",
+                                                    row.Cells[9].Value == null || string.IsNullOrWhiteSpace(row.Cells[9].Value.ToString()) ? (object)DBNull.Value : row.Cells[9].Value.ToString());
+                                                cmdInsertar.Parameters.AddWithValue("@Comentarios",
+                                                    row.Cells[10].Value == null || string.IsNullOrWhiteSpace(row.Cells[10].Value.ToString()) ? (object)DBNull.Value : row.Cells[10].Value.ToString());
+                                                cmdInsertar.Parameters.AddWithValue("@SavedAs", "Draft");
+                                                cmdInsertar.Parameters.AddWithValue("@Fecha", fecha);
 
-                                                        // Ejecutar el insert
-                                                        cmdInsertar.ExecuteNonQuery();
-                                                    }
-                                                }
-                                                else
-                                                {
-                                                    // Si el proyecto no existe, mostrar mensaje de error
-                                                    MessageBox.Show($"Proyecto inexistente o no registrado: {numeroProyecto}");
-                                                }
+                                                // Ejecutar el insert
+                                                cmdInsertar.ExecuteNonQuery();
                                             }
+                                        }
+                                        else
+                                        {
+                                            // Si el proyecto no existe, mostrar mensaje de error
+                                            MessageBox.Show($"Proyecto inexistente o no registrado: {numeroProyecto}");
                                         }
                                     }
                                 }
                             }
                         }
-
-                        // Si no hubo mensajes de duplicado, limpiar los controles
-                        if (!seMostroMensajeDuplicado)
-                        {
-                            guna2DataGridView2.Rows.Clear();
-                            textBox1.Clear();
-                            textBox2.Clear();
-                            textBox3.Clear();
-                            textBox4.Clear();
-                            textBox7.Clear();
-                            textBox8.Clear();
-                            textBox5.Clear();
-                            textBox6.Clear();
-                        }
-
-                        MessageBox.Show("Proceso completado.");
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Error: " + ex.Message);
-                    }
-                    finally
-                    {
-                        // Cerrar la conexión
-                        cnn.CloseConnection();
                     }
                 }
 
-                private void guna2GradientButton5_Click_1(object sender, EventArgs e)
+                // Si no hubo mensajes de duplicado, limpiar los controles
+                if (!seMostroMensajeDuplicado)
                 {
-                    // Crear la conexión a la base de datos
-                    conexion cnn = new conexion();
-                    SqlConnection con = cnn.GetConnection();
-                    bool registroDuplicado = false; // Bandera para saber si hubo registros duplicados
+                    guna2DataGridView2.Rows.Clear();
+                    textBox1.Clear();
+                    textBox2.Clear();
+                    textBox3.Clear();
+                    textBox4.Clear();
+                    textBox7.Clear();
+                    textBox8.Clear();
+                    textBox5.Clear();
+                    textBox6.Clear();
+                }
 
-                    try
+                MessageBox.Show("Proceso completado.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+            finally
+            {
+                // Cerrar la conexión
+                cnn.CloseConnection();
+            }
+        }
+
+        private void guna2GradientButton5_Click_1(object sender, EventArgs e)
+        {
+            // Crear la conexión a la base de datos
+            conexion cnn = new conexion();
+            SqlConnection con = cnn.GetConnection();
+            bool registroDuplicado = false; // Bandera para saber si hubo registros duplicados
+
+            try
+            {
+                // Obtener los valores de ingeniero y semana
+                string ingeniero = string.IsNullOrWhiteSpace(guna2TextBox2.Text) ? string.Empty : guna2TextBox2.Text;
+                int semana = int.TryParse(guna2TextBox1.Text, out int resultadoSemana) ? resultadoSemana : 0;
+
+                // Iterar sobre cada fila del DataGridView
+                foreach (DataGridViewRow row in guna2DataGridView2.Rows)
+                {
+                    if (!row.IsNewRow) // Verificar que no sea una fila vacía
                     {
-                        // Obtener los valores de ingeniero y semana
-                        string ingeniero = string.IsNullOrWhiteSpace(guna2TextBox2.Text) ? string.Empty : guna2TextBox2.Text;
-                        int semana = int.TryParse(guna2TextBox1.Text, out int resultadoSemana) ? resultadoSemana : 0;
+                        string numeroProyecto = row.Cells[0].Value == null ? string.Empty : row.Cells[0].Value.ToString();
 
-                        // Iterar sobre cada fila del DataGridView
-                        foreach (DataGridViewRow row in guna2DataGridView2.Rows)
+                        if (!string.IsNullOrEmpty(numeroProyecto))
                         {
-                            if (!row.IsNewRow) // Verificar que no sea una fila vacía
-                            {
-                                string numeroProyecto = row.Cells[0].Value == null ? string.Empty : row.Cells[0].Value.ToString();
-
-                                if (!string.IsNullOrEmpty(numeroProyecto))
-                                {
-                                    // Verificar si ya existe un registro con el mismo ingeniero, semana y número de proyecto
-                                    string queryVerificarRegistro = @"
+                            // Verificar si ya existe un registro con el mismo ingeniero, semana y número de proyecto
+                            string queryVerificarRegistro = @"
                     SELECT COUNT(*) 
                     FROM [ENGITASK].[dbo].[Planeador] 
                     WHERE [Ingeniero] = @Ingeniero 
                     AND DATEPART(WEEK, [Fecha]) = @Semana 
                     AND [No#Proyecto] = @NoProyecto";
 
-                                    using (SqlCommand cmdVerificarRegistro = new SqlCommand(queryVerificarRegistro, con))
-                                    {
-                                        cmdVerificarRegistro.Parameters.AddWithValue("@Ingeniero", ingeniero);
-                                        cmdVerificarRegistro.Parameters.AddWithValue("@Semana", semana);
-                                        cmdVerificarRegistro.Parameters.AddWithValue("@NoProyecto", numeroProyecto);
+                            using (SqlCommand cmdVerificarRegistro = new SqlCommand(queryVerificarRegistro, con))
+                            {
+                                cmdVerificarRegistro.Parameters.AddWithValue("@Ingeniero", ingeniero);
+                                cmdVerificarRegistro.Parameters.AddWithValue("@Semana", semana);
+                                cmdVerificarRegistro.Parameters.AddWithValue("@NoProyecto", numeroProyecto);
 
-                                        int countRegistro = (int)cmdVerificarRegistro.ExecuteScalar();
+                                int countRegistro = (int)cmdVerificarRegistro.ExecuteScalar();
 
-                                        if (countRegistro > 0)
-                                        {
-                                            MessageBox.Show($"Ya existe un registro para el ingeniero {ingeniero}, semana {semana} y número de proyecto {numeroProyecto}.");
-                                            registroDuplicado = true; // Se detectó un registro duplicado
-                                            continue;
-                                        }
-                                    }
+                                if (countRegistro > 0)
+                                {
+                                    MessageBox.Show($"Ya existe un registro para el ingeniero {ingeniero}, semana {semana} y número de proyecto {numeroProyecto}.");
+                                    registroDuplicado = true; // Se detectó un registro duplicado
+                                    continue;
+                                }
+                            }
 
-                                    // Verificar si el proyecto existe en la tabla Proyectos
-                                    string queryVerificarProyecto = "SELECT COUNT(*) FROM [ENGITASK].[dbo].[Proyectos] WHERE [Numero de Proyecto] = @NumeroProyecto";
+                            // Verificar si el proyecto existe en la tabla Proyectos
+                            string queryVerificarProyecto = "SELECT COUNT(*) FROM [ENGITASK].[dbo].[Proyectos] WHERE [Numero de Proyecto] = @NumeroProyecto";
 
-                                    using (SqlCommand cmdVerificar = new SqlCommand(queryVerificarProyecto, con))
-                                    {
-                                        cmdVerificar.Parameters.AddWithValue("@NumeroProyecto", numeroProyecto);
-                                        int countProyecto = (int)cmdVerificar.ExecuteScalar();
+                            using (SqlCommand cmdVerificar = new SqlCommand(queryVerificarProyecto, con))
+                            {
+                                cmdVerificar.Parameters.AddWithValue("@NumeroProyecto", numeroProyecto);
+                                int countProyecto = (int)cmdVerificar.ExecuteScalar();
 
-                                        if (countProyecto > 0)
-                                        {
-                                            string queryInsertar = @"
+                                if (countProyecto > 0)
+                                {
+                                    string queryInsertar = @"
                             INSERT INTO [ENGITASK].[dbo].[Planeador]
                             ([Ingeniero], [No#Proyecto], [Nombre del Proyecto], [Puesto], [Semana], [Lunes], 
                             [Martes], [Miercoles], [Jueves], [Viernes], [Sabado], [Domingo], [Total de Horas], 
@@ -659,136 +711,161 @@ namespace Engitask.User_Controls
                             (@Ingeniero, @NoProyecto, @NombreProyecto, @Puesto, @Semana, @Lunes, @Martes, @Miercoles,
                             @Jueves, @Viernes, @Sabado, @Domingo, @TotalHoras, @Comentarios, @SavedAs, GETDATE())";
 
-                                            using (SqlCommand cmdInsertar = new SqlCommand(queryInsertar, con))
-                                            {
-                                                cmdInsertar.Parameters.AddWithValue("@Ingeniero", ingeniero);
-                                                cmdInsertar.Parameters.AddWithValue("@NoProyecto", numeroProyecto);
-                                                cmdInsertar.Parameters.AddWithValue("@NombreProyecto", row.Cells[1].Value == null || string.IsNullOrWhiteSpace(row.Cells[1].Value.ToString()) ? (object)DBNull.Value : row.Cells[1].Value.ToString());
-                                                cmdInsertar.Parameters.AddWithValue("@Puesto", string.IsNullOrWhiteSpace(guna2TextBox3.Text) ? (object)DBNull.Value : guna2TextBox3.Text);
-                                                cmdInsertar.Parameters.AddWithValue("@Semana", semana);
-                                                cmdInsertar.Parameters.AddWithValue("@Lunes", row.Cells[2].Value == null || string.IsNullOrWhiteSpace(row.Cells[2].Value.ToString()) ? (object)DBNull.Value : row.Cells[2].Value.ToString());
-                                                cmdInsertar.Parameters.AddWithValue("@Martes", row.Cells[3].Value == null || string.IsNullOrWhiteSpace(row.Cells[3].Value.ToString()) ? (object)DBNull.Value : row.Cells[3].Value.ToString());
-                                                cmdInsertar.Parameters.AddWithValue("@Miercoles", row.Cells[4].Value == null || string.IsNullOrWhiteSpace(row.Cells[4].Value.ToString()) ? (object)DBNull.Value : row.Cells[4].Value.ToString());
-                                                cmdInsertar.Parameters.AddWithValue("@Jueves", row.Cells[5].Value == null || string.IsNullOrWhiteSpace(row.Cells[5].Value.ToString()) ? (object)DBNull.Value : row.Cells[5].Value.ToString());
-                                                cmdInsertar.Parameters.AddWithValue("@Viernes", row.Cells[6].Value == null || string.IsNullOrWhiteSpace(row.Cells[6].Value.ToString()) ? (object)DBNull.Value : row.Cells[6].Value.ToString());
-                                                cmdInsertar.Parameters.AddWithValue("@Sabado", row.Cells[7].Value == null || string.IsNullOrWhiteSpace(row.Cells[7].Value.ToString()) ? (object)DBNull.Value : row.Cells[7].Value.ToString());
-                                                cmdInsertar.Parameters.AddWithValue("@Domingo", row.Cells[8].Value == null || string.IsNullOrWhiteSpace(row.Cells[8].Value.ToString()) ? (object)DBNull.Value : row.Cells[8].Value.ToString());
-                                                cmdInsertar.Parameters.AddWithValue("@TotalHoras", row.Cells[9].Value == null || string.IsNullOrWhiteSpace(row.Cells[9].Value.ToString()) ? (object)DBNull.Value : row.Cells[9].Value.ToString());
-                                                cmdInsertar.Parameters.AddWithValue("@Comentarios", row.Cells[10].Value == null || string.IsNullOrWhiteSpace(row.Cells[10].Value.ToString()) ? (object)DBNull.Value : row.Cells[10].Value.ToString());
-                                                cmdInsertar.Parameters.AddWithValue("@SavedAs", "Submitted");
+                                    using (SqlCommand cmdInsertar = new SqlCommand(queryInsertar, con))
+                                    {
+                                        cmdInsertar.Parameters.AddWithValue("@Ingeniero", ingeniero);
+                                        cmdInsertar.Parameters.AddWithValue("@NoProyecto", numeroProyecto);
+                                        cmdInsertar.Parameters.AddWithValue("@NombreProyecto", row.Cells[1].Value == null || string.IsNullOrWhiteSpace(row.Cells[1].Value.ToString()) ? (object)DBNull.Value : row.Cells[1].Value.ToString());
+                                        cmdInsertar.Parameters.AddWithValue("@Puesto", string.IsNullOrWhiteSpace(guna2TextBox3.Text) ? (object)DBNull.Value : guna2TextBox3.Text);
+                                        cmdInsertar.Parameters.AddWithValue("@Semana", semana);
+                                        cmdInsertar.Parameters.AddWithValue("@Lunes", row.Cells[6].Value == null || string.IsNullOrWhiteSpace(row.Cells[6].Value.ToString()) ? (object)DBNull.Value : row.Cells[6].Value.ToString());
+                                        cmdInsertar.Parameters.AddWithValue("@Martes", row.Cells[7].Value == null || string.IsNullOrWhiteSpace(row.Cells[7].Value.ToString()) ? (object)DBNull.Value : row.Cells[7].Value.ToString());
+                                        cmdInsertar.Parameters.AddWithValue("@Miercoles", row.Cells[8].Value == null || string.IsNullOrWhiteSpace(row.Cells[8].Value.ToString()) ? (object)DBNull.Value : row.Cells[8].Value.ToString());
+                                        cmdInsertar.Parameters.AddWithValue("@Jueves", row.Cells[2].Value == null || string.IsNullOrWhiteSpace(row.Cells[2].Value.ToString()) ? (object)DBNull.Value : row.Cells[2].Value.ToString());
+                                        cmdInsertar.Parameters.AddWithValue("@Viernes", row.Cells[3].Value == null || string.IsNullOrWhiteSpace(row.Cells[3].Value.ToString()) ? (object)DBNull.Value : row.Cells[3].Value.ToString());
+                                        cmdInsertar.Parameters.AddWithValue("@Sabado", row.Cells[4].Value == null || string.IsNullOrWhiteSpace(row.Cells[4].Value.ToString()) ? (object)DBNull.Value : row.Cells[4].Value.ToString());
+                                        cmdInsertar.Parameters.AddWithValue("@Domingo", row.Cells[5].Value == null || string.IsNullOrWhiteSpace(row.Cells[5].Value.ToString()) ? (object)DBNull.Value : row.Cells[5].Value.ToString());
+                                        cmdInsertar.Parameters.AddWithValue("@TotalHoras", row.Cells[9].Value == null || string.IsNullOrWhiteSpace(row.Cells[9].Value.ToString()) ? (object)DBNull.Value : row.Cells[9].Value.ToString());
+                                        cmdInsertar.Parameters.AddWithValue("@Comentarios", row.Cells[10].Value == null || string.IsNullOrWhiteSpace(row.Cells[10].Value.ToString()) ? (object)DBNull.Value : row.Cells[10].Value.ToString());
+                                        cmdInsertar.Parameters.AddWithValue("@SavedAs", "Submitted");
 
-                                                cmdInsertar.ExecuteNonQuery();
-                                            }
-                                        }
-                                        else
-                                        {
-                                            MessageBox.Show($"Proyecto inexistente o no registrado: {numeroProyecto}");
-                                        }
+                                        cmdInsertar.ExecuteNonQuery();
                                     }
+                                }
+                                else
+                                {
+                                    MessageBox.Show($"Proyecto inexistente o no registrado: {numeroProyecto}");
                                 }
                             }
                         }
+                    }
+                }
 
-                        MessageBox.Show("Proceso completado.");
+                MessageBox.Show("Proceso completado.");
 
-                        // Si no hubo registros duplicados, limpiar campos
-                        if (!registroDuplicado)
+                // Si no hubo registros duplicados, limpiar campos
+                if (!registroDuplicado)
+                {
+                    guna2DataGridView2.Rows.Clear();
+                    textBox1.Clear();
+                    textBox2.Clear();
+                    textBox3.Clear();
+                    textBox4.Clear();
+                    textBox7.Clear();
+                    textBox8.Clear();
+                    textBox5.Clear();
+                    textBox6.Clear();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+            finally
+            {
+                cnn.CloseConnection();
+            }
+        }
+
+        private void guna2TextBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void guna2TextBox3_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        // Bandera para evitar bucles infinitos
+        private bool isUpdatingComboBox = false;
+
+        private void guna2DataGridView2_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            if (proyectosInfo == null)
+            {
+                MessageBox.Show("No se han cargado los proyectos activos. Por favor, inténtelo de nuevo.");
+                return;
+            }
+
+            int colIndex = guna2DataGridView2.CurrentCell.ColumnIndex;
+
+            if (colIndex == 0 && e.Control is System.Windows.Forms.ComboBox comboBox)
+            {
+                comboBox.DropDownStyle = ComboBoxStyle.DropDown;
+                comboBox.AutoCompleteMode = AutoCompleteMode.None;
+                comboBox.AutoCompleteSource = AutoCompleteSource.None;
+
+                comboBox.Items.Clear();
+                comboBox.Items.AddRange(proyectosInfo.Keys.ToArray());
+
+                comboBox.TextChanged -= ComboBox_TextChanged;
+                comboBox.TextChanged += ComboBox_TextChanged;
+
+                comboBox.KeyDown -= ComboBox_KeyDown;
+                comboBox.KeyDown += ComboBox_KeyDown;
+            }
+
+            // Si la celda editada está en las columnas 2 a 8, restringir entrada solo a números
+            if (colIndex >= 2 && colIndex <= 8 && e.Control is System.Windows.Forms.TextBox textBox)
+            {
+                // Desconectar el evento anterior para evitar múltiples conexiones
+                textBox.KeyPress -= TextBox_KeyPressOnlyNumbers;
+
+                // Conectar el evento KeyPress para restringir la entrada a solo números
+                textBox.KeyPress += TextBox_KeyPressOnlyNumbers;
+            }
+
+            else if (colIndex == 10 && e.Control is System.Windows.Forms.TextBox textBox10)
+            {
+                textBox10.KeyPress -= TextBox_KeyPressOnlyNumbers;
+            }
+        }
+
+        private void ComboBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (sender is System.Windows.Forms.ComboBox comboBox)
+            {
+                if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Tab)
+                {
+                    e.Handled = true;
+                    e.SuppressKeyPress = true;
+
+                    if (comboBox.SelectedItem == null && comboBox.Items.Count > 0)
+                    {
+                        var match = comboBox.Items.Cast<string>()
+                            .FirstOrDefault(item => item.StartsWith(comboBox.Text, StringComparison.OrdinalIgnoreCase));
+
+                        if (match != null)
                         {
-                            guna2DataGridView2.Rows.Clear();
-                            textBox1.Clear();
-                            textBox2.Clear();
-                            textBox3.Clear();
-                            textBox4.Clear();
-                            textBox7.Clear();
-                            textBox8.Clear();
-                            textBox5.Clear();
-                            textBox6.Clear();
+                            isUpdatingComboBox = true; // Evitar bucles
+                            comboBox.SelectedItem = match;
+                            isUpdatingComboBox = false;
                         }
                     }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Error: " + ex.Message);
-                    }
-                    finally
-                    {
-                        cnn.CloseConnection();
-                    }
+
+                    guna2DataGridView2.EndEdit();
+                    SendKeys.Send("{TAB}");
                 }
-
-                private void guna2TextBox1_TextChanged(object sender, EventArgs e)
-                {
-
-                }
-
-                private void guna2TextBox3_TextChanged(object sender, EventArgs e)
-                {
-
-                }
-
-                private void guna2DataGridView2_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
-                {
-                    // Verifica si la variable 'proyectosInfo' está inicializada
-                    if (proyectosInfo == null)
-                    {
-                        MessageBox.Show("No se han cargado los proyectos activos. Por favor, inténtelo de nuevo.");
-                        return;
-                    }
-
-                    int colIndex = guna2DataGridView2.CurrentCell.ColumnIndex;
-
-                    // Si la celda es de la columna 0 (Número de Proyecto) y es un ComboBox
-                    if (colIndex == 0 && e.Control is System.Windows.Forms.ComboBox comboBox)
-                    {
-                        comboBox.DropDownStyle = ComboBoxStyle.DropDown; // Permitir escritura en el ComboBox
-
-                        // Desactivar autocompletado
-                        comboBox.AutoCompleteMode = AutoCompleteMode.None;
-                        comboBox.AutoCompleteSource = AutoCompleteSource.None;
-
-                        // Llena el ComboBox con los números de proyecto activos
-                        comboBox.Items.Clear();
-                        comboBox.Items.AddRange(proyectosInfo.Keys.ToArray());
-
-                        // Conectar el evento TextChanged para filtrar dinámicamente
-                        comboBox.TextChanged -= ComboBox_TextChanged;
-                        comboBox.TextChanged += ComboBox_TextChanged;
-                    }
-
-                    // Si la celda editada está en las columnas 2 a 8, restringir entrada solo a números
-                    if (colIndex >= 2 && colIndex <= 8 && e.Control is System.Windows.Forms.TextBox textBox)
-                    {
-                        // Desconectar el evento anterior para evitar múltiples conexiones
-                        textBox.KeyPress -= TextBox_KeyPressOnlyNumbers;
-
-                        // Conectar el evento KeyPress para restringir la entrada a solo números
-                        textBox.KeyPress += TextBox_KeyPressOnlyNumbers;
-                    }
-
-                    else if (colIndex == 10 && e.Control is System.Windows.Forms.TextBox textBox10)
-                    {
-                        textBox10.KeyPress -= TextBox_KeyPressOnlyNumbers;
-                    }
-                }
-
-                // Método para restringir entrada a solo números
-                private void TextBox_KeyPressOnlyNumbers(object sender, KeyPressEventArgs e)
-                {
-                    // Permitir solo dígitos, tecla de retroceso (Backspace) y un solo punto decimal
-                    if (!char.IsDigit(e.KeyChar) && e.KeyChar != '\b' && e.KeyChar != '.')
-                    {
-                        e.Handled = true; // Bloquear entrada no numérica
-                    }
-
-                    // Si ya hay un punto, evitar que se ingrese otro
-                    if (e.KeyChar == '.' && sender is System.Windows.Forms.TextBox textBox && textBox.Text.Contains("."))
-                    {
-                        e.Handled = true; // Bloquear entrada de más de un punto decimal
-                    }
-                } 
-          
+            }
+        }
 
 
+        // Método para restringir entrada a solo números
+        private void TextBox_KeyPressOnlyNumbers(object sender, KeyPressEventArgs e)
+        {
+            // Permitir solo dígitos, tecla de retroceso (Backspace) y un solo punto decimal
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != '\b' && e.KeyChar != '.')
+            {
+                e.Handled = true; // Bloquear entrada no numérica
+            }
 
+            // Si ya hay un punto, evitar que se ingrese otro
+            if (e.KeyChar == '.' && sender is System.Windows.Forms.TextBox textBox && textBox.Text.Contains("."))
+            {
+                e.Handled = true; // Bloquear entrada de más de un punto decimal
+            }
+        }
 
         // Variable para almacenar los proyectos activos
         private Dictionary<string, (string Nombre, string Estatus)> proyectosInfo;
@@ -796,30 +873,30 @@ namespace Engitask.User_Controls
         // Evento para filtrar los elementos del ComboBox mientras se escribe
         private void ComboBox_TextChanged(object sender, EventArgs e)
         {
+            if (isUpdatingComboBox) return; // Evitar bucles infinitos
+
             if (sender is System.Windows.Forms.ComboBox comboBox)
             {
-                string filter = comboBox.Text.ToLower(); // Texto ingresado en el ComboBox
-
+                string filter = comboBox.Text.ToLower();
                 var filteredItems = proyectosInfo.Keys
-                    .Where(p => p.ToLower().Contains(filter)) // Filtrar por coincidencia
-                    .ToList();
+                    .Where(p => p.ToLower().Contains(filter))
+                    .ToArray();
 
-                // Si no hay coincidencias, simplemente no hacer nada
-                if (filteredItems.Count == 0)
-                {
-                    return; // Ignorar sin errores ni mensajes
-                }
+                isUpdatingComboBox = true;  // Evitar que el evento se dispare nuevamente
 
-                // Actualizar los ítems del ComboBox sin autocompletar el texto
+                string currentText = comboBox.Text;
+
+                comboBox.BeginUpdate();
                 comboBox.Items.Clear();
-                comboBox.Items.AddRange(filteredItems.ToArray());
-
-                // Reabrir el desplegable para mostrar los resultados filtrados
-                comboBox.DroppedDown = true;
-
-                // Dejar el texto tal como está, sin modificarlo automáticamente
-                comboBox.SelectionStart = comboBox.Text.Length;
+                comboBox.Items.AddRange(filteredItems);
+                comboBox.Text = currentText;
+                comboBox.SelectionStart = currentText.Length;
                 comboBox.SelectionLength = 0;
+                comboBox.EndUpdate();
+
+                comboBox.DroppedDown = filteredItems.Length > 0;  // Mostrar solo si hay elementos filtrados
+
+                isUpdatingComboBox = false;  // Permitir eventos de nuevo
             }
         }
 
@@ -832,7 +909,15 @@ namespace Engitask.User_Controls
 
         private void guna2DataGridView2_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
-
+            if (guna2DataGridView2.Columns[e.ColumnIndex].Index == 0)
+            {
+                string enteredValue = e.FormattedValue.ToString();
+                if (!proyectosInfo.ContainsKey(enteredValue))
+                {
+                    MessageBox.Show("El número de proyecto ingresado no es válido.");
+                    e.Cancel = true;
+                }
+            }
         }
 
         private void guna2DataGridView2_DataError(object sender, DataGridViewDataErrorEventArgs e)
@@ -843,6 +928,11 @@ namespace Engitask.User_Controls
             {
                 e.ThrowException = false; // Evita que la excepción se lance
             }
+        }
+
+        private void textBox9_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 

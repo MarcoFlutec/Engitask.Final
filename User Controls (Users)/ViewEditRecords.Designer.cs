@@ -587,6 +587,7 @@
             NoDeProyecto.HeaderText = "No. De Proyecto";
             NoDeProyecto.MinimumWidth = 6;
             NoDeProyecto.Name = "NoDeProyecto";
+            NoDeProyecto.ReadOnly = true;
             // 
             // NombreDelProyecto
             // 
@@ -688,6 +689,7 @@
             SaveAsDraft.HeaderText = "SaveAsDraft";
             SaveAsDraft.MinimumWidth = 6;
             SaveAsDraft.Name = "SaveAsDraft";
+            SaveAsDraft.ReadOnly = true;
             SaveAsDraft.Resizable = DataGridViewTriState.True;
             SaveAsDraft.Visible = false;
             // 
