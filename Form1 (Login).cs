@@ -15,6 +15,9 @@ using Microsoft.Data.SqlClient;
 using Microsoft.Identity.Client;
 using Microsoft.VisualBasic.ApplicationServices;
 using Engitask.Olvide_mi_contraseña;
+using Engitask.DataLayer;
+using Microsoft.Graph.Drives.Item.Items.Item.GetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithInterval;
+using Engitask.DataLayer.Repositories;
 
 
 namespace Engitask
@@ -47,54 +50,15 @@ namespace Engitask
             guna2TextBox2.UseSystemPasswordChar = true;
         }
 
-        private void guna2GradientButton1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void guna2Button1_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                var psi = new System.Diagnostics.ProcessStartInfo
-                {
-                    FileName = "cmd",
-                    Arguments = "/c start https://apps.powerapps.com/play/e/default-7e86495a-6d6a-442e-8026-9586e600eb44/a/924326c4-74a3-4f38-8d2e-5a767051bcc3?tenantId=7e86495a-6d6a-442e-8026-9586e600eb44&hint=5de52dd9-c4bb-486b-bd06-158bb848fbd6&sourcetime=1726068845890",
-                    CreateNoWindow = true
-                };
-                System.Diagnostics.Process.Start(psi);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error al abrir el enlace: {ex.Message}");
-            }
-        }
-
-        private void guna2Button2_Click(object sender, EventArgs e)
-        {
-            Form15__Sign_Up_ form15 = new Form15__Sign_Up_();
-            form15.Show();
-            this.Hide();  // Ocultar el Form actual
-        }
-
-        private void guna2TextBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
+        //Change Name of Button
         private void guna2GradientButton1_Click_1(object sender, EventArgs e)
         {
             IniciarSesion();
         }
 
-
+        //All methods for Data layer move to a repository 
         private void IniciarSesion()
         {
-            // Crear la conexión
-            conexion cnn = new conexion();
-
-            // Obtener la conexión desde la clase 'conexion'
-            SqlConnection con = cnn.GetConnection();
 
             // Obtener los valores de los TextBox
             string correo = guna2TextBox1.Text;
@@ -107,89 +71,55 @@ namespace Engitask
                 return;
             }
 
-            // Consulta SQL para verificar las credenciales
-            string query = "SELECT Rol FROM Usuarios WHERE [Correo] = @correo AND [Password] = @password";
+            //For Data types like Roles or Types or other kind of data, use numbers in Database
 
-            try
+
+            var rol = UserRepositories.GetRol(correo, password);
+            if (string.IsNullOrEmpty(rol))
             {
-                using (SqlCommand cmd = new SqlCommand(query, con))
-                {
-                    // Agregar parámetros para evitar SQL Injection
-                    cmd.Parameters.AddWithValue("@correo", correo);
-                    cmd.Parameters.AddWithValue("@password", password);
-
-                    // Ejecutar el comando y obtener el rol del usuario
-                    object result = cmd.ExecuteScalar();
-
-                    // Si se obtuvo un resultado, el usuario existe y se autenticó correctamente
-                    if (result != null)
-                    {
-                        string rol = result.ToString();
-
-                        // Guardar los datos del usuario en la clase Session
-                        Session.CorreoUsuario = correo;
-                        Session.RolUsuario = rol;
-
-                        // Guardar credenciales si el checkbox está marcado
-                        if (checkBox1.Checked)
-                        {
-                            Properties.Settings.Default.UserEmail = correo;
-                            Properties.Settings.Default.UserPassword = password;
-                            Properties.Settings.Default.RememberMe = true;
-                            Properties.Settings.Default.Save();
-                        }
-                        else
-                        {
-                            // Limpiar las configuraciones si no se quiere recordar
-                            Properties.Settings.Default.UserEmail = string.Empty;
-                            Properties.Settings.Default.UserPassword = string.Empty;
-                            Properties.Settings.Default.RememberMe = false;
-                            Properties.Settings.Default.Save();
-                        }
-
-
-                        // Verificar el rol y abrir el formulario correspondiente
-                        if (rol == "Usuario")
-                        {
-                            // Usuario autenticado correctamente
-                            Form6__User_Menu_ form6 = new Form6__User_Menu_();
-                            form6.Show();
-                            this.Hide();  // Ocultar el Form actual
-
-                        }
-                        else if (rol == "Admin")
-                        {
-                            // Administrador autenticado correctamente
-                            Form5__Menu_Admin_ form5 = new Form5__Menu_Admin_();
-                            form5.Show();
-                            this.Hide();  // Ocultar el Form actual
-
-                        }
-                        else
-                        {
-                            // Rol no reconocido
-                            MessageBox.Show("Rol no reconocido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                    }
-                    else
-                    {
-                        // Mostrar mensaje de error si las credenciales no son válidas
-                        MessageBox.Show("Usuario o contraseña incorrectos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
+                MessageBox.Show("Usuario o contraseña incorrectos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
-            catch (Exception ex)
+            // Guardar los datos del usuario en la clase Session
+            Session.CorreoUsuario = correo;
+            Session.RolUsuario = rol;
+
+            // Guardar credenciales si el checkbox está marcado
+            if (checkBox1.Checked)
             {
-                // Manejo de errores
-                MessageBox.Show("Ocurrió un error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Properties.Settings.Default.UserEmail = correo;
+                Properties.Settings.Default.UserPassword = password;
+                Properties.Settings.Default.RememberMe = true;
+                Properties.Settings.Default.Save();
             }
-            finally
+            else
             {
-                // Cerrar la conexión
-                cnn.CloseConnection();
+                // Limpiar las configuraciones si no se quiere recordar
+                Properties.Settings.Default.UserEmail = string.Empty;
+                Properties.Settings.Default.UserPassword = string.Empty;
+                Properties.Settings.Default.RememberMe = false;
+                Properties.Settings.Default.Save();
             }
+
+            switch (rol)
+            {
+                case "Usuario":
+                    Form6__User_Menu_ form6 = new Form6__User_Menu_();
+                    form6.Show();
+                    this.Hide();  // Ocultar el Form actual
+                    break;
+                case "Admin":
+                    // Administrador autenticado correctamente
+                    Form5__Menu_Admin_ form5 = new Form5__Menu_Admin_();
+                    form5.Show();
+                    this.Hide();  // Ocultar el Form actual
+                    break;
+                default:
+                    MessageBox.Show("Rol no reconocido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+            }
+
         }
-
 
         private void guna2Button2_Click_1(object sender, EventArgs e)
         {
@@ -227,5 +157,8 @@ namespace Engitask
                 IniciarSesion();
             }
         }
+
+        
+       
     }
 }

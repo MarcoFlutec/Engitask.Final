@@ -96,5 +96,10 @@ namespace Engitask
                 MessageBox.Show($"Error al abrir el enlace: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void Form5__Menu_Admin__Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

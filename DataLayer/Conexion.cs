@@ -16,7 +16,7 @@ using Microsoft.Identity.Client;
 using Microsoft.VisualBasic.ApplicationServices;
 
 
-namespace Engitask
+namespace Engitask.DataLayer
 {
     public class conexion
     {
@@ -28,10 +28,10 @@ namespace Engitask
         {
             try
             {
-
+                //Set connection string on App.config
                 con = new SqlConnection("Data Source=192.168.30.184;Initial Catalog=Engitask;User ID=Admin;Password=Root123;TrustServerCertificate=True");
 
-                con.Open();
+               // con.Open();
             }
             catch (Exception ex)
             {

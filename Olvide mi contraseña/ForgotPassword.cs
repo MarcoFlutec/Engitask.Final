@@ -16,6 +16,7 @@ using System.Net.Mail;
 using System.Net;
 using Microsoft.Data.SqlClient;
 using Guna.UI2.WinForms;
+using Engitask.DataLayer;
 
 namespace Engitask.Olvide_mi_contraseña
 {

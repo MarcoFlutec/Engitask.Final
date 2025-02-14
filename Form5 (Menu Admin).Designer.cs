@@ -78,12 +78,11 @@
             guna2GradientButton1.ImageAlign = HorizontalAlignment.Right;
             guna2GradientButton1.ImageOffset = new Point(2, 0);
             guna2GradientButton1.ImageSize = new Size(40, 40);
-            guna2GradientButton1.Location = new Point(0, 368);
-            guna2GradientButton1.Margin = new Padding(3, 4, 3, 4);
+            guna2GradientButton1.Location = new Point(0, 276);
             guna2GradientButton1.Name = "guna2GradientButton1";
-            guna2GradientButton1.Padding = new Padding(0, 0, 11, 0);
+            guna2GradientButton1.Padding = new Padding(0, 0, 10, 0);
             guna2GradientButton1.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            guna2GradientButton1.Size = new Size(304, 72);
+            guna2GradientButton1.Size = new Size(266, 54);
             guna2GradientButton1.TabIndex = 9;
             guna2GradientButton1.Text = "Project Registration";
             guna2GradientButton1.Click += guna2GradientButton1_Click;
@@ -107,12 +106,11 @@
             guna2GradientButton2.Image = (Image)resources.GetObject("guna2GradientButton2.Image");
             guna2GradientButton2.ImageAlign = HorizontalAlignment.Right;
             guna2GradientButton2.ImageSize = new Size(40, 40);
-            guna2GradientButton2.Location = new Point(0, 513);
-            guna2GradientButton2.Margin = new Padding(3, 4, 3, 4);
+            guna2GradientButton2.Location = new Point(0, 385);
             guna2GradientButton2.Name = "guna2GradientButton2";
-            guna2GradientButton2.Padding = new Padding(0, 0, 40, 0);
+            guna2GradientButton2.Padding = new Padding(0, 0, 35, 0);
             guna2GradientButton2.ShadowDecoration.CustomizableEdges = customizableEdges4;
-            guna2GradientButton2.Size = new Size(304, 72);
+            guna2GradientButton2.Size = new Size(266, 54);
             guna2GradientButton2.TabIndex = 10;
             guna2GradientButton2.Text = "Project Searcher";
             guna2GradientButton2.Click += guna2GradientButton2_Click;
@@ -134,11 +132,10 @@
             guna2GradientButton4.ImageAlign = HorizontalAlignment.Right;
             guna2GradientButton4.ImageOffset = new Point(10, 0);
             guna2GradientButton4.ImageSize = new Size(30, 30);
-            guna2GradientButton4.Location = new Point(0, 799);
-            guna2GradientButton4.Margin = new Padding(3, 4, 3, 4);
+            guna2GradientButton4.Location = new Point(0, 599);
             guna2GradientButton4.Name = "guna2GradientButton4";
             guna2GradientButton4.ShadowDecoration.CustomizableEdges = customizableEdges6;
-            guna2GradientButton4.Size = new Size(304, 77);
+            guna2GradientButton4.Size = new Size(266, 58);
             guna2GradientButton4.TabIndex = 12;
             guna2GradientButton4.Text = "Sign Out";
             guna2GradientButton4.Click += guna2GradientButton4_Click;
@@ -149,11 +146,10 @@
             guna2PictureBox1.CustomizableEdges = customizableEdges7;
             guna2PictureBox1.Image = (Image)resources.GetObject("guna2PictureBox1.Image");
             guna2PictureBox1.ImageRotate = 0F;
-            guna2PictureBox1.Location = new Point(23, 20);
-            guna2PictureBox1.Margin = new Padding(3, 4, 3, 4);
+            guna2PictureBox1.Location = new Point(20, 15);
             guna2PictureBox1.Name = "guna2PictureBox1";
             guna2PictureBox1.ShadowDecoration.CustomizableEdges = customizableEdges8;
-            guna2PictureBox1.Size = new Size(263, 147);
+            guna2PictureBox1.Size = new Size(230, 110);
             guna2PictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             guna2PictureBox1.TabIndex = 28;
             guna2PictureBox1.TabStop = false;
@@ -174,11 +170,10 @@
             guna2CustomGradientPanel1.FillColor2 = Color.Transparent;
             guna2CustomGradientPanel1.FillColor3 = Color.Transparent;
             guna2CustomGradientPanel1.FillColor4 = Color.Transparent;
-            guna2CustomGradientPanel1.Location = new Point(-2, -4);
-            guna2CustomGradientPanel1.Margin = new Padding(3, 4, 3, 4);
+            guna2CustomGradientPanel1.Location = new Point(-2, -3);
             guna2CustomGradientPanel1.Name = "guna2CustomGradientPanel1";
             guna2CustomGradientPanel1.ShadowDecoration.CustomizableEdges = customizableEdges14;
-            guna2CustomGradientPanel1.Size = new Size(330, 921);
+            guna2CustomGradientPanel1.Size = new Size(289, 691);
             guna2CustomGradientPanel1.TabIndex = 29;
             // 
             // guna2GradientButton5
@@ -200,12 +195,11 @@
             guna2GradientButton5.Image = (Image)resources.GetObject("guna2GradientButton5.Image");
             guna2GradientButton5.ImageAlign = HorizontalAlignment.Right;
             guna2GradientButton5.ImageSize = new Size(40, 40);
-            guna2GradientButton5.Location = new Point(0, 658);
-            guna2GradientButton5.Margin = new Padding(3, 4, 3, 4);
+            guna2GradientButton5.Location = new Point(0, 494);
             guna2GradientButton5.Name = "guna2GradientButton5";
-            guna2GradientButton5.Padding = new Padding(0, 0, 40, 0);
+            guna2GradientButton5.Padding = new Padding(0, 0, 35, 0);
             guna2GradientButton5.ShadowDecoration.CustomizableEdges = customizableEdges10;
-            guna2GradientButton5.Size = new Size(304, 72);
+            guna2GradientButton5.Size = new Size(266, 54);
             guna2GradientButton5.TabIndex = 30;
             guna2GradientButton5.Text = "Power BI Report";
             guna2GradientButton5.Click += guna2GradientButton5_Click;
@@ -229,12 +223,11 @@
             guna2GradientButton3.Image = (Image)resources.GetObject("guna2GradientButton3.Image");
             guna2GradientButton3.ImageAlign = HorizontalAlignment.Right;
             guna2GradientButton3.ImageSize = new Size(40, 40);
-            guna2GradientButton3.Location = new Point(3, 223);
-            guna2GradientButton3.Margin = new Padding(3, 4, 3, 4);
+            guna2GradientButton3.Location = new Point(3, 167);
             guna2GradientButton3.Name = "guna2GradientButton3";
-            guna2GradientButton3.Padding = new Padding(0, 0, 40, 0);
+            guna2GradientButton3.Padding = new Padding(0, 0, 35, 0);
             guna2GradientButton3.ShadowDecoration.CustomizableEdges = customizableEdges12;
-            guna2GradientButton3.Size = new Size(304, 72);
+            guna2GradientButton3.Size = new Size(266, 54);
             guna2GradientButton3.TabIndex = 29;
             guna2GradientButton3.Text = "Data Analysis";
             guna2GradientButton3.Click += guna2GradientButton3_Click;
@@ -244,25 +237,24 @@
             guna2GradientPanel1.BackgroundImage = Properties.Resources.Summit;
             guna2GradientPanel1.BackgroundImageLayout = ImageLayout.Stretch;
             guna2GradientPanel1.CustomizableEdges = customizableEdges15;
-            guna2GradientPanel1.Location = new Point(323, 0);
-            guna2GradientPanel1.Margin = new Padding(3, 4, 3, 4);
+            guna2GradientPanel1.Location = new Point(283, 0);
             guna2GradientPanel1.Name = "guna2GradientPanel1";
             guna2GradientPanel1.ShadowDecoration.CustomizableEdges = customizableEdges16;
-            guna2GradientPanel1.Size = new Size(1331, 913);
+            guna2GradientPanel1.Size = new Size(1165, 685);
             guna2GradientPanel1.TabIndex = 30;
             // 
             // Form5__Menu_Admin_
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = Properties.Resources.vecteezy_bright_white_blur_abstract_background_45678744;
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(1654, 911);
+            ClientSize = new Size(1447, 683);
             Controls.Add(guna2GradientPanel1);
             Controls.Add(guna2CustomGradientPanel1);
-            Margin = new Padding(3, 4, 3, 4);
             Name = "Form5__Menu_Admin_";
             Text = "Engitask";
+            Load += Form5__Menu_Admin__Load;
             ((System.ComponentModel.ISupportInitialize)guna2PictureBox1).EndInit();
             guna2CustomGradientPanel1.ResumeLayout(false);
             ResumeLayout(false);
