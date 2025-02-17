@@ -89,13 +89,13 @@
             textBox2 = new TextBox();
             NoDeProyecto = new DataGridViewTextBoxColumn();
             NombreDelProyecto = new DataGridViewTextBoxColumn();
-            Lunes = new DataGridViewTextBoxColumn();
-            Martes = new DataGridViewTextBoxColumn();
-            Miercoles = new DataGridViewTextBoxColumn();
             Jueves = new DataGridViewTextBoxColumn();
             Viernes = new DataGridViewTextBoxColumn();
             Sabado = new DataGridViewTextBoxColumn();
             Domingo = new DataGridViewTextBoxColumn();
+            Lunes = new DataGridViewTextBoxColumn();
+            Martes = new DataGridViewTextBoxColumn();
+            Miercoles = new DataGridViewTextBoxColumn();
             Total = new DataGridViewTextBoxColumn();
             Comentarios = new DataGridViewTextBoxColumn();
             SaveAsDraft = new DataGridViewTextBoxColumn();
@@ -188,7 +188,7 @@
             guna2DataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             guna2DataGridView1.ColumnHeadersHeight = 42;
             guna2DataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            guna2DataGridView1.Columns.AddRange(new DataGridViewColumn[] { NoDeProyecto, NombreDelProyecto, Lunes, Martes, Miercoles, Jueves, Viernes, Sabado, Domingo, Total, Comentarios, SaveAsDraft });
+            guna2DataGridView1.Columns.AddRange(new DataGridViewColumn[] { NoDeProyecto, NombreDelProyecto, Jueves, Viernes, Sabado, Domingo, Lunes, Martes, Miercoles, Total, Comentarios, SaveAsDraft });
             dataGridViewCellStyle15.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle15.BackColor = Color.White;
             dataGridViewCellStyle15.Font = new Font("Segoe UI", 9F);
@@ -599,37 +599,10 @@
             NombreDelProyecto.Name = "NombreDelProyecto";
             NombreDelProyecto.ReadOnly = true;
             // 
-            // Lunes
-            // 
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            Lunes.DefaultCellStyle = dataGridViewCellStyle5;
-            Lunes.DividerWidth = 2;
-            Lunes.HeaderText = "Lunes";
-            Lunes.MinimumWidth = 6;
-            Lunes.Name = "Lunes";
-            // 
-            // Martes
-            // 
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            Martes.DefaultCellStyle = dataGridViewCellStyle6;
-            Martes.DividerWidth = 2;
-            Martes.HeaderText = "Martes";
-            Martes.MinimumWidth = 6;
-            Martes.Name = "Martes";
-            // 
-            // Miercoles
-            // 
-            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            Miercoles.DefaultCellStyle = dataGridViewCellStyle7;
-            Miercoles.DividerWidth = 2;
-            Miercoles.HeaderText = "Miercoles";
-            Miercoles.MinimumWidth = 6;
-            Miercoles.Name = "Miercoles";
-            // 
             // Jueves
             // 
-            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            Jueves.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            Jueves.DefaultCellStyle = dataGridViewCellStyle5;
             Jueves.DividerWidth = 2;
             Jueves.HeaderText = "Jueves";
             Jueves.MinimumWidth = 6;
@@ -637,8 +610,8 @@
             // 
             // Viernes
             // 
-            dataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            Viernes.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            Viernes.DefaultCellStyle = dataGridViewCellStyle6;
             Viernes.DividerWidth = 2;
             Viernes.HeaderText = "Viernes";
             Viernes.MinimumWidth = 6;
@@ -646,8 +619,8 @@
             // 
             // Sabado
             // 
-            dataGridViewCellStyle10.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            Sabado.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            Sabado.DefaultCellStyle = dataGridViewCellStyle7;
             Sabado.DividerWidth = 2;
             Sabado.HeaderText = "Sabado";
             Sabado.MinimumWidth = 6;
@@ -655,12 +628,39 @@
             // 
             // Domingo
             // 
-            dataGridViewCellStyle11.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            Domingo.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            Domingo.DefaultCellStyle = dataGridViewCellStyle8;
             Domingo.DividerWidth = 2;
             Domingo.HeaderText = "Domingo";
             Domingo.MinimumWidth = 6;
             Domingo.Name = "Domingo";
+            // 
+            // Lunes
+            // 
+            dataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            Lunes.DefaultCellStyle = dataGridViewCellStyle9;
+            Lunes.DividerWidth = 2;
+            Lunes.HeaderText = "Lunes";
+            Lunes.MinimumWidth = 6;
+            Lunes.Name = "Lunes";
+            // 
+            // Martes
+            // 
+            dataGridViewCellStyle10.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            Martes.DefaultCellStyle = dataGridViewCellStyle10;
+            Martes.DividerWidth = 2;
+            Martes.HeaderText = "Martes";
+            Martes.MinimumWidth = 6;
+            Martes.Name = "Martes";
+            // 
+            // Miercoles
+            // 
+            dataGridViewCellStyle11.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            Miercoles.DefaultCellStyle = dataGridViewCellStyle11;
+            Miercoles.DividerWidth = 2;
+            Miercoles.HeaderText = "Miercoles";
+            Miercoles.MinimumWidth = 6;
+            Miercoles.Name = "Miercoles";
             // 
             // Total
             // 
@@ -750,13 +750,13 @@
         private TextBox textBox2;
         private DataGridViewTextBoxColumn NoDeProyecto;
         private DataGridViewTextBoxColumn NombreDelProyecto;
-        private DataGridViewTextBoxColumn Lunes;
-        private DataGridViewTextBoxColumn Martes;
-        private DataGridViewTextBoxColumn Miercoles;
         private DataGridViewTextBoxColumn Jueves;
         private DataGridViewTextBoxColumn Viernes;
         private DataGridViewTextBoxColumn Sabado;
         private DataGridViewTextBoxColumn Domingo;
+        private DataGridViewTextBoxColumn Lunes;
+        private DataGridViewTextBoxColumn Martes;
+        private DataGridViewTextBoxColumn Miercoles;
         private DataGridViewTextBoxColumn Total;
         private DataGridViewTextBoxColumn Comentarios;
         private DataGridViewTextBoxColumn SaveAsDraft;
