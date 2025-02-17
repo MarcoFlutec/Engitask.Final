@@ -112,7 +112,6 @@
             guna2DataGridView2.TabIndex = 0;
             guna2DataGridView2.CellContentClick += guna2DataGridView2_CellContentClick;
             guna2DataGridView2.CellEndEdit += guna2DataGridView2_CellEndEdit;
-            guna2DataGridView2.CellValidating += guna2DataGridView2_CellValidating;
             guna2DataGridView2.CellValueChanged += guna2DataGridView2_CellValueChanged;
             guna2DataGridView2.CurrentCellDirtyStateChanged += guna2DataGridView2_CurrentCellDirtyStateChanged;
             guna2DataGridView2.DataError += guna2DataGridView2_DataError;
@@ -500,7 +499,6 @@
             guna2TextBox3.Size = new Size(243, 36);
             guna2TextBox3.TabIndex = 18;
             guna2TextBox3.TextAlign = HorizontalAlignment.Center;
-            guna2TextBox3.TextChanged += guna2TextBox3_TextChanged;
             // 
             // guna2TextBox2
             // 
@@ -529,7 +527,6 @@
             guna2TextBox2.Size = new Size(173, 36);
             guna2TextBox2.TabIndex = 17;
             guna2TextBox2.TextAlign = HorizontalAlignment.Center;
-            guna2TextBox2.TextChanged += guna2TextBox2_TextChanged;
             // 
             // guna2TextBox1
             // 
@@ -558,7 +555,6 @@
             guna2TextBox1.Size = new Size(72, 36);
             guna2TextBox1.TabIndex = 16;
             guna2TextBox1.TextAlign = HorizontalAlignment.Center;
-            guna2TextBox1.TextChanged += guna2TextBox1_TextChanged;
             // 
             // pictureBox3
             // 

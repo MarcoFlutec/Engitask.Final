@@ -6,9 +6,17 @@ using System.Threading.Tasks;
 
 namespace Engitask
 {
-    internal class Session
+    public static class Session
     {
-        public static string CorreoUsuario { get; set; }
-        public static string RolUsuario { get; set; }
+        public static UserInfo User { get; set; }
     }
+
+    public class UserInfo
+    {
+        public string CorreoUsuario { get; set; }
+        public string RolUsuario { get; set; }
+        public string NombreUsuario { get; set; }
+        public string Puesto { get; set; }
+    }
+
 }

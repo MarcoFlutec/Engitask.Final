@@ -17,18 +17,18 @@ namespace Engitask.DataLayer.Repositories
         {
             _dbContext = new();
         }
-        public static string GetRol(string correo, string password)
+        public UserInfo GetUserInfo(string correo, string password)
         {
+           
             // Crear la conexión
             conexion cnn = new conexion();
-            string rol = "";
+            UserInfo info = new();
             try
             {
-
                 // Obtener la conexión desde la clase 'conexion'
                 SqlConnection con = cnn.GetConnection();
                 // Consulta SQL para verificar las credenciales
-                string query = "SELECT Rol FROM Usuarios WHERE [Correo] = @correo AND [Password] = @password";
+                string query = "SELECT Rol, [User Name],Puesto FROM Usuarios WHERE [Correo] = @correo AND [Password] = @password";
 
                 using (SqlCommand cmd = new SqlCommand(query, con))
                 {
@@ -42,7 +42,9 @@ namespace Engitask.DataLayer.Repositories
                     {
                         while (reader.Read())
                         {
-                            rol = reader["Rol"].ToString()!;
+                            info.RolUsuario = reader["Rol"].ToString()!;
+                            info.NombreUsuario = reader["User Name"].ToString()!;
+                            info.Puesto = reader["Puesto"].ToString()!;
                         }
                     }
                     reader.Close();
@@ -58,7 +60,7 @@ namespace Engitask.DataLayer.Repositories
             {
                 cnn.CloseConnection();
             }
-            return rol;
+            return info;
         }
 
         public async Task<int> CreateUser(User user)

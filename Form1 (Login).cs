@@ -24,6 +24,7 @@ namespace Engitask
 {
     public partial class Login : Form
     {
+        private UserRepositories _userRepo = new();
         public Login()
         {
             InitializeComponent();
@@ -73,17 +74,16 @@ namespace Engitask
 
             //For Data types like Roles or Types or other kind of data, use numbers in Database
 
+           var userInfo = _userRepo.GetUserInfo(correo,password);
 
-            var rol = UserRepositories.GetRol(correo, password);
-            if (string.IsNullOrEmpty(rol))
+            if (userInfo == null)
             {
                 MessageBox.Show("Usuario o contraseña incorrectos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             // Guardar los datos del usuario en la clase Session
-            Session.CorreoUsuario = correo;
-            Session.RolUsuario = rol;
-
+            Session.User = userInfo;
+            
             // Guardar credenciales si el checkbox está marcado
             if (checkBox1.Checked)
             {
@@ -101,7 +101,7 @@ namespace Engitask
                 Properties.Settings.Default.Save();
             }
 
-            switch (rol)
+            switch (userInfo.RolUsuario)
             {
                 case "Usuario":
                     Form6__User_Menu_ form6 = new Form6__User_Menu_();
