@@ -17,7 +17,7 @@ namespace Engitask.User_Controls
         public ViewEditRecords() // Constructor de ViewEditRecords
         {
             InitializeComponent();
-            // Actualiza las sumas
+            // Actualiza las sumas de combox
             UpdateAllSums();
             this.Load += new EventHandler(ViewEditRecords_Load); // Cambiar a ViewEditRecords_Load
             // Crear la conexión
