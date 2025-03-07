@@ -197,49 +197,6 @@ namespace Engitask.User_Controls
             }
         }
 
-        // Función para obtener el nombre del proyecto o verificar si el número de proyecto existe
-        private (string nombreProyecto, string estatus) ObtenerNombreYEstatusProyecto(string numeroProyecto)
-        {
-            string nombreProyecto = string.Empty;
-            string estatus = string.Empty;
-
-            // Crear la conexión
-            conexion cnn = new conexion();
-            SqlConnection con = cnn.GetConnection();
-
-            try
-            {
-                // Consulta SQL para obtener el Nombre y el Estatus basado en el Número de Proyecto
-                string query = "SELECT [Nombre], [Estatus] FROM [ENGITASK].[dbo].[Proyectos] WHERE [Numero de Proyecto] = @numeroProyecto";
-
-                using (SqlCommand cmd = new SqlCommand(query, con))
-                {
-                    // Agrega el parámetro para el Número de Proyecto
-                    cmd.Parameters.AddWithValue("@numeroProyecto", numeroProyecto);
-
-                    // Ejecuta la consulta y obtiene el resultado
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        if (reader.Read())
-                        {
-                            nombreProyecto = reader["Nombre"].ToString();
-                            estatus = reader["Estatus"].ToString();  // Obtiene el estatus
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al obtener el nombre y estatus del proyecto: " + ex.Message);
-            }
-            finally
-            {
-                cnn.CloseConnection();
-            }
-
-            return (nombreProyecto, estatus);  // Retorna el nombre y el estatus
-        }
-
 
         private void guna2DataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {

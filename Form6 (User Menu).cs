@@ -144,5 +144,18 @@ namespace Engitask
         {
             System.Diagnostics.Process.GetCurrentProcess().Kill();  // Termina el proceso abruptamente
         }
+
+        private void guna2GradientButton5_Click_1(object sender, EventArgs e)
+        {
+            // Verificar si ya se ha mostrado este control previamente
+            if (!(panel2.Controls.Count > 0 && panel2.Controls[0] is PR))
+            {
+                // Crear una instancia del UserControl que quieres mostrar
+                PR ProjectRegister = new PR();
+
+                // Mostrar el UserControl dentro del panel
+                ShowUserControl(ProjectRegister);
+            }
+        }
     }
 }

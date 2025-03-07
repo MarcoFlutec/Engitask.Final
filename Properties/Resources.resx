@@ -118,6 +118,9 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="icons8-play-481" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons8-play-481.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="rose" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\rose.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -148,6 +151,9 @@
   <data name="icons8-job-100 (3)1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-job-100 (3)1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="524314-pastel-pink-morning-blur-gradation-pink-color" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\524314-pastel-pink-morning-blur-gradation-pink-color.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="icons8-goma-de-borrar-80" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-goma-de-borrar-80.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -175,9 +181,6 @@
   <data name="213462" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\213462.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="icons8-visible-26" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icons8-visible-26.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="var" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\var.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -192,6 +195,9 @@
   </data>
   <data name="Play1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Play.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icons8-add-to-collection1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons8-add-to-collection.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="10-82" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\10-82.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -216,6 +222,9 @@
   </data>
   <data name="icons8-signing-a-document" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-signing-a-document.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icons8-job-100 (2)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons8-job-100 (2).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="icons8-sign-out" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-sign-out.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -250,8 +259,8 @@
   <data name="icons8-detener-48" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-detener-48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="gold" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\gold.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="dark-purple-pattern-with-curved-lines-vector2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\dark-purple-pattern-with-curved-lines-vector2.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="visible" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\visible.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -259,17 +268,14 @@
   <data name="icons8-disk" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-disk.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="dark-purple-pattern-with-curved-lines-vector2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\dark-purple-pattern-with-curved-lines-vector2.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="Summit1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Summit1.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="cronica" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\cronica.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="icons8-search-in-list-unscreen" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icons8-search-in-list-unscreen.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="10-8" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\10-8.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Vela" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Vela.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -289,9 +295,6 @@
   <data name="icons8-plus-961" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-plus-961.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="748657" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\748657.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="rose gold" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\rose gold.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -307,8 +310,8 @@
   <data name="fotolog" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\fotolog.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="icons8-add-to-collection1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icons8-add-to-collection.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="gold" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\gold.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="6894684-simple-silver-wallpaper3" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\6894684-simple-silver-wallpaper3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -316,14 +319,8 @@
   <data name="gold1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\gold1.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="vecteezy_bright-white-blur-abstract-background_45678744" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\vecteezy_bright-white-blur-abstract-background_45678744.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="dark-purple-pattern-with-curved-lines-vector1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\dark-purple-pattern-with-curved-lines-vector1.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="biernes" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\biernes.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="icons8-play-48" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-play-48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -333,6 +330,9 @@
   </data>
   <data name="6894684-simple-silver-wallpaper2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\6894684-simple-silver-wallpaper2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="biernes1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\biernes1.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="icons8-add (3)1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-add (3).gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -355,14 +355,14 @@
   <data name="850348" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\850348.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="biernes1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\biernes1.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="biernes" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\biernes.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="silver_metal_background_11" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\silver_metal_background_11.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="524314-pastel-pink-morning-blur-gradation-pink-color" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\524314-pastel-pink-morning-blur-gradation-pink-color.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="748657" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\748657.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="biernes2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\biernes2.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -376,8 +376,11 @@
   <data name="Wallpapaer 1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Wallpapaer 1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="icons8-user-1002" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icons8-user-1002.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="icons8-add-to-collection-1--unscreen" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons8-add-to-collection-1--unscreen.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="360_F_952928701_EL46BaYjyrxPasbZTx7Ux0Yr9q2GBuoU" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\360_F_952928701_EL46BaYjyrxPasbZTx7Ux0Yr9q2GBuoU.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="13-Ventura-Dark" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\13-Ventura-Dark.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -394,8 +397,8 @@
   <data name="pajuelazo3" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\pajuelazo3.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="icons8-add-to-collection-1--unscreen" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icons8-add-to-collection-1--unscreen.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="icons8-search-in-list-unscreen" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons8-search-in-list-unscreen.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="icons8-add (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-add (1).gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -409,14 +412,14 @@
   <data name="213461" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\213461.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="10-8" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\10-8.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="icons8-visible-26" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons8-visible-26.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="icons8-job-100 (2)" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icons8-job-100 (2).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="vecteezy_bright-white-blur-abstract-background_45678744" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\vecteezy_bright-white-blur-abstract-background_45678744.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="icons8-play-481" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icons8-play-481.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="icons8-user-1002" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons8-user-1002.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="icons8-add-5--unscreen" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-add-5--unscreen.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -427,7 +430,7 @@
   <data name="1255552" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\1255552.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="360_F_952928701_EL46BaYjyrxPasbZTx7Ux0Yr9q2GBuoU" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\360_F_952928701_EL46BaYjyrxPasbZTx7Ux0Yr9q2GBuoU.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="116506" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\116506.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

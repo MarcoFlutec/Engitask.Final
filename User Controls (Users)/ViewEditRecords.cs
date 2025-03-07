@@ -28,7 +28,7 @@ namespace Engitask.User_Controls
             {
                 // Usar el correo del usuario almacenado en la clase Session
                 string correoUsuario = Session.CorreoUsuario;
-               
+
                 // Hacer la consulta SQL usando ese correo
                 // Se usa la variable correoUsuario para buscar en la columna [Correo]
                 string queryUsuario = "SELECT [User Name] FROM [ENGITASK].[dbo].[Usuarios] WHERE [Correo] = @correo"; // Aquí
@@ -44,7 +44,7 @@ namespace Engitask.User_Controls
                     if (resultUsuario != null)
                     {
                         // Si se encontró el resultado, mostrar el USERNAMETEXT
-                       
+
                         guna2TextBox2.Text = resultUsuario.ToString();
                     }
                     else
@@ -69,7 +69,7 @@ namespace Engitask.User_Controls
                     if (resultUsuario != null)
                     {
                         // Si se encontró el resultado, mostrar el USERNAMETEXT
-                 
+
                         guna2TextBox3.Text = resultUsuario.ToString();
                     }
                     else
@@ -241,7 +241,7 @@ namespace Engitask.User_Controls
                 UpdateAllSums();
 
                 // Aquí puedes realizar cualquier acción basada en la semana seleccionada
-              
+
             }
         }
 
@@ -350,7 +350,7 @@ namespace Engitask.User_Controls
                         }
                     }
                 }
-                
+
             }
             catch (Exception ex)
             {
@@ -704,7 +704,7 @@ namespace Engitask.User_Controls
 
         }
 
-        
+
 
         private void guna2DataGridView1_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
@@ -741,5 +741,89 @@ namespace Engitask.User_Controls
                 e.Handled = true; // Bloquear entrada de más de un punto decimal
             }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (guna2DataGridView1.SelectedRows.Count > 0) // Verificar si hay una fila seleccionada
+            {
+                // Obtener el No#Proyecto de la fila seleccionada (columna 0)
+                string noProyecto = guna2DataGridView1.SelectedRows[0].Cells[0].Value.ToString();
+
+                // Obtener la semana desde el guna2ComboBox1
+                string semana = guna2ComboBox1.SelectedItem?.ToString(); // Verifica si hay un valor seleccionado
+
+                // Obtener el ingeniero desde guna2TextBox2
+                string ingeniero = guna2TextBox2.Text.Trim(); // Eliminar espacios en blanco
+
+                if (string.IsNullOrEmpty(semana))
+                {
+                    MessageBox.Show("Seleccione una semana antes de eliminar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                if (string.IsNullOrEmpty(ingeniero))
+                {
+                    MessageBox.Show("Ingrese el nombre del ingeniero antes de eliminar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                // Confirmación antes de eliminar
+                DialogResult result = MessageBox.Show($"¿Está seguro de eliminar el proyecto {noProyecto} en la semana {semana} para el ingeniero {ingeniero}?",
+                                                      "Confirmar eliminación",
+                                                      MessageBoxButtons.YesNo,
+                                                      MessageBoxIcon.Warning);
+
+                if (result == DialogResult.Yes)
+                {
+                    // Llamar a la función para eliminar de la base de datos
+                    conexion miConexion = new conexion();
+                    bool eliminado = EliminarDeBaseDatos(noProyecto, semana, ingeniero, miConexion);
+
+                    if (eliminado)
+                    {
+                        // Eliminar la fila del DataGridView
+                        guna2DataGridView1.Rows.RemoveAt(guna2DataGridView1.SelectedRows[0].Index);
+                        MessageBox.Show("Proyecto eliminado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se pudo eliminar el proyecto. Verifique los datos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+
+                    // Cerrar la conexión
+                    miConexion.CloseConnection();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Por favor, seleccione una fila para eliminar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private bool EliminarDeBaseDatos(string noProyecto, string semana, string ingeniero, conexion miConexion)
+        {
+            bool eliminado = false;
+
+            try
+            {
+                using (SqlCommand comando = new SqlCommand("DELETE FROM [ENGITASK].[dbo].[Planeador] WHERE [No#Proyecto] = @NoProyecto AND [Semana] = @Semana AND [Ingeniero ] = @Ingeniero", miConexion.GetConnection()))
+                {
+                    comando.Parameters.AddWithValue("@NoProyecto", noProyecto);
+                    comando.Parameters.AddWithValue("@Semana", semana);
+                    comando.Parameters.AddWithValue("@Ingeniero", ingeniero);
+
+                    int filasAfectadas = comando.ExecuteNonQuery();
+                    eliminado = filasAfectadas > 0; // Si al menos una fila fue eliminada, retorna true
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al eliminar: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return eliminado;
+        }
+
+
     }
 }
