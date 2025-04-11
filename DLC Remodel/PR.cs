@@ -31,8 +31,6 @@ namespace Engitask.DLC_Remodel
             // Obtener la conexión desde la clase 'conexion'
             SqlConnection con = cnn.GetConnection();
 
-
-
             try
             {
                 // Obtener el número de semana actual
@@ -164,7 +162,6 @@ namespace Engitask.DLC_Remodel
                         MessageBox.Show("Usuario no encontrado");
                     }
                 }
-
 
             }
             catch (Exception ex)
@@ -575,6 +572,9 @@ namespace Engitask.DLC_Remodel
             // Crear la conexión a la base de datos
             conexion cnn = new conexion();
             SqlConnection con = cnn.GetConnection();
+            if (con.State != ConnectionState.Open)
+                con.Open();
+
 
             bool seMostroMensajeDuplicado = false; // Variable para rastrear si se detectó un duplicado
 
@@ -688,7 +688,7 @@ namespace Engitask.DLC_Remodel
                 // Si no hubo mensajes de duplicado, limpiar los controles
                 if (!seMostroMensajeDuplicado)
                 {
-                    guna2DataGridView1.Rows.Clear();
+                    guna2DataGridView1.Rows.Clear(); // Limpiar el DataGridView
                     textBox1.Clear();
                     textBox2.Clear();
                     textBox3.Clear();

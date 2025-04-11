@@ -35,22 +35,22 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             guna2PictureBox1 = new Guna.UI2.WinForms.Guna2PictureBox();
             guna2GradientButton3 = new Guna.UI2.WinForms.Guna2GradientButton();
             guna2GradientPanel1 = new Guna.UI2.WinForms.Guna2GradientPanel();
+            guna2GradientButton5 = new Guna.UI2.WinForms.Guna2GradientButton();
             guna2GradientButton2 = new Guna.UI2.WinForms.Guna2GradientButton();
             guna2GradientButton1 = new Guna.UI2.WinForms.Guna2GradientButton();
             guna2GradientButton4 = new Guna.UI2.WinForms.Guna2GradientButton();
             panel2 = new Panel();
-            guna2GradientButton5 = new Guna.UI2.WinForms.Guna2GradientButton();
             ((System.ComponentModel.ISupportInitialize)guna2PictureBox1).BeginInit();
             guna2GradientPanel1.SuspendLayout();
             SuspendLayout();
@@ -87,7 +87,7 @@
             guna2GradientButton3.FillColor2 = Color.FromArgb(74, 73, 71);
             guna2GradientButton3.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             guna2GradientButton3.ForeColor = Color.White;
-            guna2GradientButton3.Location = new Point(29, 367);
+            guna2GradientButton3.Location = new Point(29, 656);
             guna2GradientButton3.Margin = new Padding(3, 4, 3, 4);
             guna2GradientButton3.Name = "guna2GradientButton3";
             guna2GradientButton3.PressedColor = Color.FromArgb(177, 116, 87);
@@ -122,6 +122,35 @@
             guna2GradientPanel1.Size = new Size(306, 901);
             guna2GradientPanel1.TabIndex = 36;
             // 
+            // guna2GradientButton5
+            // 
+            guna2GradientButton5.BackColor = Color.Transparent;
+            guna2GradientButton5.BorderRadius = 5;
+            guna2GradientButton5.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
+            guna2GradientButton5.CheckedState.FillColor = Color.Gray;
+            guna2GradientButton5.CheckedState.FillColor2 = Color.Silver;
+            guna2GradientButton5.CustomizableEdges = customizableEdges5;
+            guna2GradientButton5.DisabledState.BorderColor = Color.DarkGray;
+            guna2GradientButton5.DisabledState.CustomBorderColor = Color.DarkGray;
+            guna2GradientButton5.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            guna2GradientButton5.DisabledState.FillColor2 = Color.FromArgb(169, 169, 169);
+            guna2GradientButton5.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            guna2GradientButton5.FillColor = Color.FromArgb(74, 73, 71);
+            guna2GradientButton5.FillColor2 = Color.FromArgb(74, 73, 71);
+            guna2GradientButton5.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            guna2GradientButton5.ForeColor = Color.White;
+            guna2GradientButton5.Location = new Point(29, 221);
+            guna2GradientButton5.Margin = new Padding(3, 4, 3, 4);
+            guna2GradientButton5.Name = "guna2GradientButton5";
+            guna2GradientButton5.PressedColor = Color.FromArgb(177, 116, 87);
+            guna2GradientButton5.ShadowDecoration.CustomizableEdges = customizableEdges6;
+            guna2GradientButton5.Size = new Size(305, 77);
+            guna2GradientButton5.TabIndex = 36;
+            guna2GradientButton5.Text = "Project Register";
+            guna2GradientButton5.TextAlign = HorizontalAlignment.Left;
+            guna2GradientButton5.UseTransparentBackground = true;
+            guna2GradientButton5.Click += guna2GradientButton5_Click_1;
+            // 
             // guna2GradientButton2
             // 
             guna2GradientButton2.BackColor = Color.Transparent;
@@ -139,7 +168,7 @@
             guna2GradientButton2.FillColor2 = Color.FromArgb(74, 73, 71);
             guna2GradientButton2.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             guna2GradientButton2.ForeColor = Color.White;
-            guna2GradientButton2.Location = new Point(29, 667);
+            guna2GradientButton2.Location = new Point(29, 521);
             guna2GradientButton2.Margin = new Padding(3, 4, 3, 4);
             guna2GradientButton2.Name = "guna2GradientButton2";
             guna2GradientButton2.PressedColor = Color.FromArgb(177, 116, 87);
@@ -168,7 +197,7 @@
             guna2GradientButton1.FillColor2 = Color.FromArgb(74, 73, 71);
             guna2GradientButton1.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             guna2GradientButton1.ForeColor = Color.White;
-            guna2GradientButton1.Location = new Point(29, 515);
+            guna2GradientButton1.Location = new Point(29, 371);
             guna2GradientButton1.Margin = new Padding(3, 4, 3, 4);
             guna2GradientButton1.Name = "guna2GradientButton1";
             guna2GradientButton1.PressedColor = Color.FromArgb(177, 116, 87);
@@ -215,35 +244,6 @@
             panel2.Size = new Size(1356, 901);
             panel2.TabIndex = 38;
             panel2.Paint += panel2_Paint;
-            // 
-            // guna2GradientButton5
-            // 
-            guna2GradientButton5.BackColor = Color.Transparent;
-            guna2GradientButton5.BorderRadius = 5;
-            guna2GradientButton5.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
-            guna2GradientButton5.CheckedState.FillColor = Color.Gray;
-            guna2GradientButton5.CheckedState.FillColor2 = Color.Silver;
-            guna2GradientButton5.CustomizableEdges = customizableEdges5;
-            guna2GradientButton5.DisabledState.BorderColor = Color.DarkGray;
-            guna2GradientButton5.DisabledState.CustomBorderColor = Color.DarkGray;
-            guna2GradientButton5.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            guna2GradientButton5.DisabledState.FillColor2 = Color.FromArgb(169, 169, 169);
-            guna2GradientButton5.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            guna2GradientButton5.FillColor = Color.FromArgb(74, 73, 71);
-            guna2GradientButton5.FillColor2 = Color.FromArgb(74, 73, 71);
-            guna2GradientButton5.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            guna2GradientButton5.ForeColor = Color.White;
-            guna2GradientButton5.Location = new Point(29, 221);
-            guna2GradientButton5.Margin = new Padding(3, 4, 3, 4);
-            guna2GradientButton5.Name = "guna2GradientButton5";
-            guna2GradientButton5.PressedColor = Color.FromArgb(177, 116, 87);
-            guna2GradientButton5.ShadowDecoration.CustomizableEdges = customizableEdges6;
-            guna2GradientButton5.Size = new Size(305, 77);
-            guna2GradientButton5.TabIndex = 36;
-            guna2GradientButton5.Text = "Project Register";
-            guna2GradientButton5.TextAlign = HorizontalAlignment.Left;
-            guna2GradientButton5.UseTransparentBackground = true;
-            guna2GradientButton5.Click += guna2GradientButton5_Click_1;
             // 
             // Form6__User_Menu_
             // 

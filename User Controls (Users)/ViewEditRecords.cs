@@ -250,6 +250,9 @@ namespace Engitask.User_Controls
             // Crear la conexión a la base de datos
             conexion cnn = new conexion();
             SqlConnection con = cnn.GetConnection();
+            if (con.State != ConnectionState.Open)
+                con.Open();
+
 
             try
             {
