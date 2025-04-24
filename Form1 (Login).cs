@@ -25,8 +25,16 @@ namespace Engitask
         {
             InitializeComponent();
             conexion cnn = new conexion();
+            this.FormClosed += Login_FormClosed; // <- aquí se enlaza el evento
 
         }
+
+
+        private void Login_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
+
 
         private void Form1_Load(object sender, EventArgs e)
         {

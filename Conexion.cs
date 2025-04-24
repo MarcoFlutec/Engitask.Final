@@ -10,7 +10,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Net.Http;
-using System.Data.SqlClient;
 using Microsoft.Data.SqlClient;
 using Microsoft.Identity.Client;
 using Microsoft.VisualBasic.ApplicationServices;
@@ -20,27 +19,27 @@ namespace Engitask
 {
     public class conexion
     {
-        private SqlConnection con;
-
-        public SqlConnection Connection { get; internal set; }
+        private readonly SqlConnection con;
 
         public conexion()
         {
-            try
-            {
-
-                con = new SqlConnection("Data Source=192.168.30.184;Initial Catalog=Engitask;User ID=Admin;Password=Root123;TrustServerCertificate=True");
-
-                con.Open();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("ERROR: " + ex.Message);
-            }
+            // Reemplaza los datos según tu entorno si es necesario
+            con = new SqlConnection("Data Source=192.168.30.184;Initial Catalog=Engitask;User ID=Admin;Password=Root123;TrustServerCertificate=True");
         }
 
         public SqlConnection GetConnection()
         {
+            if (con.State != ConnectionState.Open)
+            {
+                try
+                {
+                    con.Open();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al abrir la conexión: " + ex.Message);
+                }
+            }
             return con;
         }
 
@@ -50,16 +49,6 @@ namespace Engitask
             {
                 con.Close();
             }
-        }
-
-        internal void open()
-        {
-            throw new NotImplementedException();
-        }
-
-        internal void Close()
-        {
-            throw new NotImplementedException();
         }
     }
 }

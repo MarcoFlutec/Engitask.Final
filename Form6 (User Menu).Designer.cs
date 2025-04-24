@@ -97,6 +97,7 @@
             guna2GradientButton3.Text = "TimeSheet";
             guna2GradientButton3.TextAlign = HorizontalAlignment.Left;
             guna2GradientButton3.UseTransparentBackground = true;
+            guna2GradientButton3.Visible = false;
             guna2GradientButton3.CheckedChanged += guna2GradientButton3_CheckedChanged;
             guna2GradientButton3.Click += guna2GradientButton3_Click;
             // 

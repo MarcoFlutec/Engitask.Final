@@ -189,22 +189,34 @@ namespace Engitask.DLC_Remodel
 
         private void guna2DataGridView1_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
-            if (guna2DataGridView1.CurrentCell.ColumnIndex >= 2 && guna2DataGridView1.CurrentCell.ColumnIndex <= 8) // Columnas 2 a 8
+            if (e.Control is System.Windows.Forms.TextBox tb)
             {
-                if (e.Control is System.Windows.Forms.TextBox textBox)
-                {
-                    // Remover manejadores previos para evitar duplicados
-                    textBox.KeyPress -= new KeyPressEventHandler(DataGridViewTextBox_KeyPress);
-                    textBox.KeyPress += new KeyPressEventHandler(DataGridViewTextBox_KeyPress);
-                }
+                tb.KeyPress -= DataGridViewTextBox_KeyPress;
+                tb.KeyPress += DataGridViewTextBox_KeyPress;
             }
         }
         private void DataGridViewTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            // Permitir solo dígitos (0-9) y teclas de control (como Backspace)
-            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            // Este sender es el TextBox de edición
+            var tb = sender as System.Windows.Forms.TextBox;
+            if (tb == null || guna2DataGridView1.CurrentCell == null) return;
+
+            int colIndex = guna2DataGridView1.CurrentCell.ColumnIndex;
+
+            if (colIndex >= 1 && colIndex <= 7)
             {
-                e.Handled = true; // Cancelar la tecla si no es un número ni control
+                if (char.IsControl(e.KeyChar))
+                    return;
+
+                char decimalSeparator = System.Globalization.CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator[0];
+
+                if (char.IsDigit(e.KeyChar))
+                    return;
+
+                if (e.KeyChar == decimalSeparator && !tb.Text.Contains(decimalSeparator))
+                    return;
+
+                e.Handled = true; // Bloquea letras, símbolos, doble punto, etc.
             }
         }
 
@@ -577,9 +589,12 @@ namespace Engitask.DLC_Remodel
 
 
             bool seMostroMensajeDuplicado = false; // Variable para rastrear si se detectó un duplicado
+            bool todoInsertado = true;
 
             try
             {
+               
+
                 // Obtener valores de Ingeniero y Semana
                 string ingeniero = guna2TextBox2.Text;
                 string semana = guna2TextBox4.Text;
@@ -615,6 +630,7 @@ namespace Engitask.DLC_Remodel
                                     MessageBox.Show($"Ya existe un registro para el proyecto {numeroProyecto}, Ingeniero {ingeniero}, Semana {semana} y Fecha {fecha.ToShortDateString()}. No se puede duplicar.");
                                     MessageBox.Show("Por favor cambia el numero de proyecto o borralo para poder continuar.");
                                     seMostroMensajeDuplicado = true; // Se detectó un duplicado
+                                    todoInsertado = false;
                                     break;
                                 }
                                 else
@@ -677,6 +693,7 @@ namespace Engitask.DLC_Remodel
                                         {
                                             // Si el proyecto no existe, mostrar mensaje de error
                                             MessageBox.Show($"Proyecto inexistente o no registrado: {numeroProyecto}");
+                                            todoInsertado = false; // Si no existe, marcamos como error
                                         }
                                     }
                                 }
@@ -685,10 +702,10 @@ namespace Engitask.DLC_Remodel
                     }
                 }
 
-                // Si no hubo mensajes de duplicado, limpiar los controles
-                if (!seMostroMensajeDuplicado)
+                // Solo limpiar si todo fue insertado correctamente
+                if (todoInsertado && !seMostroMensajeDuplicado)
                 {
-                    guna2DataGridView1.Rows.Clear(); // Limpiar el DataGridView
+                    guna2DataGridView1.Rows.Clear();
                     textBox1.Clear();
                     textBox2.Clear();
                     textBox3.Clear();

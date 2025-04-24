@@ -265,7 +265,7 @@
             label3.Name = "label3";
             label3.Size = new Size(80, 20);
             label3.TabIndex = 40;
-            label3.Text = "Version 1.3";
+            label3.Text = "Version 1.4";
             label3.Click += label3_Click;
             // 
             // Login
