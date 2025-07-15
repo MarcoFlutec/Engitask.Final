@@ -1,4 +1,5 @@
 ﻿using Engitask.DLC_Remodel;
+using Engitask.Recover;
 using Engitask.User_Controls;
 using Engitask.User_Controls__Users_;
 using Guna.UI2.WinForms;
@@ -49,10 +50,10 @@ namespace Engitask
         private void guna2GradientButton3_Click(object sender, EventArgs e)
         {
             // Verificar si ya se ha mostrado este control previamente
-            if (!(panel2.Controls.Count > 0 && panel2.Controls[0] is NewRegister))
+            if (!(panel2.Controls.Count > 0 && panel2.Controls[0] is UltimateRec))
             {
                 // Crear una instancia del UserControl que quieres mostrar
-                NewRegister NewRegister = new NewRegister();
+                UltimateRec NewRegister = new UltimateRec();
 
                 // Mostrar el UserControl dentro del panel
                 ShowUserControl(NewRegister);

@@ -81,6 +81,7 @@
             pictureBox1 = new PictureBox();
             guna2ComboBox1 = new Guna.UI2.WinForms.Guna2ComboBox();
             guna2CustomGradientPanel1 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
+            button1 = new Button();
             guna2CustomGradientPanel2 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
             pictureBox4 = new PictureBox();
             label8 = new Label();
@@ -99,7 +100,6 @@
             textBox3 = new TextBox();
             textBox1 = new TextBox();
             textBox2 = new TextBox();
-            button1 = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)guna2DataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
@@ -156,11 +156,11 @@
             guna2GradientButton4.ForeColor = Color.White;
             guna2GradientButton4.Image = (Image)resources.GetObject("guna2GradientButton4.Image");
             guna2GradientButton4.ImageSize = new Size(35, 35);
-            guna2GradientButton4.Location = new Point(901, 14);
+            guna2GradientButton4.Location = new Point(914, 14);
             guna2GradientButton4.Margin = new Padding(3, 4, 3, 4);
             guna2GradientButton4.Name = "guna2GradientButton4";
             guna2GradientButton4.ShadowDecoration.CustomizableEdges = customizableEdges4;
-            guna2GradientButton4.Size = new Size(429, 63);
+            guna2GradientButton4.Size = new Size(416, 63);
             guna2GradientButton4.TabIndex = 20;
             guna2GradientButton4.Text = "Save and View";
             guna2GradientButton4.Click += guna2GradientButton4_Click;
@@ -483,6 +483,18 @@
             guna2CustomGradientPanel1.Size = new Size(1353, 91);
             guna2CustomGradientPanel1.TabIndex = 24;
             // 
+            // button1
+            // 
+            button1.Image = (Image)resources.GetObject("button1.Image");
+            button1.ImageAlign = ContentAlignment.MiddleLeft;
+            button1.Location = new Point(1105, 12);
+            button1.Name = "button1";
+            button1.Size = new Size(225, 64);
+            button1.TabIndex = 24;
+            button1.Text = "Delete Selected Row";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
             // guna2CustomGradientPanel2
             // 
             guna2CustomGradientPanel2.Controls.Add(pictureBox4);
@@ -695,18 +707,6 @@
             textBox2.Size = new Size(93, 27);
             textBox2.TabIndex = 157;
             textBox2.TextChanged += textBox2_TextChanged;
-            // 
-            // button1
-            // 
-            button1.Image = (Image)resources.GetObject("button1.Image");
-            button1.ImageAlign = ContentAlignment.MiddleLeft;
-            button1.Location = new Point(1105, 12);
-            button1.Name = "button1";
-            button1.Size = new Size(225, 64);
-            button1.TabIndex = 24;
-            button1.Text = "Delete Selected Row";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
             // 
             // ViewEditRecords
             // 

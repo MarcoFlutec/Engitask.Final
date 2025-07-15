@@ -593,7 +593,7 @@ namespace Engitask.DLC_Remodel
 
             try
             {
-               
+
 
                 // Obtener valores de Ingeniero y Semana
                 string ingeniero = guna2TextBox2.Text;
@@ -727,6 +727,11 @@ namespace Engitask.DLC_Remodel
                 // Cerrar la conexión
                 cnn.CloseConnection();
             }
+        }
+
+        private void guna2TextBox2_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
